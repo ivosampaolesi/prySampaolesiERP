@@ -1,4 +1,4 @@
-﻿using prySampaolesiClaseBD;
+using prySampaolesiClaseBD;
 using System;
 using System.Data;
 using System.Data.OleDb;
@@ -75,6 +75,69 @@ namespace prySampaolesiERP
             }
         }
 
+        private Form activeForm = null;
+
+        private void AbrirFormularioHijo(Form formularioHijo, string tituloSeccion)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+                activeForm.Dispose();
+            }
+
+            activeForm = formularioHijo;
+            lblTituloSeccion.Text = tituloSeccion;
+
+            formularioHijo.TopLevel = false;
+            formularioHijo.FormBorderStyle = FormBorderStyle.None;
+            formularioHijo.Dock = DockStyle.None; // Keep None so we can center it
+
+            pnlContent.Controls.Add(formularioHijo);
+            pnlContent.Tag = formularioHijo;
+
+            CentrarFormularioHijo();
+
+            formularioHijo.BringToFront();
+            formularioHijo.Show();
+        }
+
+        private void CentrarFormularioHijo()
+        {
+            if (activeForm != null && pnlContent != null)
+            {
+                activeForm.Location = new Point(
+                    (pnlContent.Width - activeForm.Width) / 2,
+                    (pnlContent.Height - activeForm.Height) / 2
+                );
+            }
+        }
+
+        private void pnlContent_Resize(object sender, EventArgs e)
+        {
+            CentrarFormularioHijo();
+        }
+
+        private void btnDatosPersonales_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new frmDatosUsuario(), "Datos Personales");
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+                activeForm.Dispose();
+                activeForm = null;
+            }
+            lblTituloSeccion.Text = "Inicio";
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (timer != null)
@@ -82,10 +145,13 @@ namespace prySampaolesiERP
                 timer.Stop();
                 timer.Dispose();
             }
+            if (activeForm != null)
+            {
+                activeForm.Close();
+                activeForm.Dispose();
+            }
             if (conexion != null)
                 conexion.Desconectar();
         }
-
-
     }
 }

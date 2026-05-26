@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +28,10 @@ namespace prySampaolesiERP
             {
                 CargarProvincias();
                 CargarLocalidades();
+                
+                cmbRedes.DataSource = conexion.ObtenerDatos("Redes");
+                cmbRedes.DisplayMember = "NombreRed";
+                cmbRedes.SelectedIndex = -1;
             }
             else
             {
