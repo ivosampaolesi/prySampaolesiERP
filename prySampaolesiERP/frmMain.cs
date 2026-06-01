@@ -29,6 +29,7 @@ namespace prySampaolesiERP
                 stpEstado.BackColor = Color.Green;
                 stplblEstado.Text = "Conexion exitosa :)";
                 MostrarDatosUsuario();
+                btnAuditoria.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
                 
             }
             else
@@ -133,6 +134,12 @@ namespace prySampaolesiERP
                 activeForm = null;
             }
             lblTituloSeccion.Text = "Inicio";
+        }
+
+        private void btnAuditoria_Click(object sender, EventArgs e)
+        {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Auditoria");
+            AbrirFormularioHijo(new frmAuditoria(), "Auditoria");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

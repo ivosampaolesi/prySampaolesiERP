@@ -68,6 +68,9 @@
     <Compile Include="frmDatosUsuario.Designer.cs">
       <DependentUpon>frmDatosUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAuditoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLogin.resx">
