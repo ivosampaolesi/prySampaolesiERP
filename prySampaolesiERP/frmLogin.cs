@@ -62,11 +62,14 @@ namespace prySampaolesiERP
                     "WHERE Usuario.IdUsuario = @idUsuario",
                     parametrosPerfil);
 
+                Program.UsuarioPerfil = "";
                 if (dtPerfil != null && dtPerfil.Rows.Count > 0)
                 {
                     Program.UsuarioPerfil = dtPerfil.Rows[0]["Nombre"] != DBNull.Value ? 
                         dtPerfil.Rows[0]["Nombre"].ToString() : "";
                 }
+
+                clsAuditoria.RegistrarInicioSesion(conexion, Program.UsuarioMail, Program.UsuarioPerfil);
 
                 frmMain frm = new frmMain();
                 this.Hide();

@@ -119,11 +119,13 @@ namespace prySampaolesiERP
 
         private void btnDatosPersonales_Click(object sender, EventArgs e)
         {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Datos Personales");
             AbrirFormularioHijo(new frmDatosUsuario(), "Datos Personales");
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Inicio");
             if (activeForm != null)
             {
                 activeForm.Close();
@@ -151,7 +153,10 @@ namespace prySampaolesiERP
                 activeForm.Dispose();
             }
             if (conexion != null)
+            {
+                clsAuditoria.RegistrarCierreSesion(conexion, Program.UsuarioMail, Program.UsuarioPerfil);
                 conexion.Desconectar();
+            }
         }
     }
 }

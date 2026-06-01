@@ -14,7 +14,9 @@ namespace prySampaolesiClaseBD
 
         public clsConexion()
         {
-            rutaBD = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BD", "Sampaolesi.accdb");
+            rutaBD = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\BD\Sampaolesi.accdb");
+            if (!File.Exists(rutaBD))
+                rutaBD = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BD", "Sampaolesi.accdb");
         }
 
         public bool Conectar()

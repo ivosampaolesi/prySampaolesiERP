@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsAuditoria.cs" />
     <Compile Include="clsConexion.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -104,7 +105,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="BD\Sampaolesi.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Perfil.png" />
   </ItemGroup>
