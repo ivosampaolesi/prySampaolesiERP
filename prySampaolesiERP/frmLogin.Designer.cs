@@ -23,6 +23,7 @@ namespace prySampaolesiERP
             this.btnIngresar = new System.Windows.Forms.Button();
             this.lblIntentos = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chkMostrarContrasenia = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,6 +73,20 @@ namespace prySampaolesiERP
             this.txtContrasenia.Size = new System.Drawing.Size(300, 25);
             this.txtContrasenia.TabIndex = 3;
             // 
+            // chkMostrarContrasenia
+            // 
+            this.chkMostrarContrasenia.AutoSize = true;
+            this.chkMostrarContrasenia.BackColor = System.Drawing.Color.Transparent;
+            this.chkMostrarContrasenia.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.chkMostrarContrasenia.ForeColor = System.Drawing.Color.Black;
+            this.chkMostrarContrasenia.Location = new System.Drawing.Point(22, 231);
+            this.chkMostrarContrasenia.Name = "chkMostrarContrasenia";
+            this.chkMostrarContrasenia.Size = new System.Drawing.Size(128, 19);
+            this.chkMostrarContrasenia.TabIndex = 4;
+            this.chkMostrarContrasenia.Text = "Mostrar contrasena";
+            this.chkMostrarContrasenia.UseVisualStyleBackColor = false;
+            this.chkMostrarContrasenia.CheckedChanged += new System.EventHandler(this.chkMostrarContrasenia_CheckedChanged);
+            // 
             // btnIngresar
             // 
             this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
@@ -85,7 +100,7 @@ namespace prySampaolesiERP
             this.btnIngresar.Location = new System.Drawing.Point(22, 258);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(300, 35);
-            this.btnIngresar.TabIndex = 4;
+            this.btnIngresar.TabIndex = 5;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
@@ -97,7 +112,7 @@ namespace prySampaolesiERP
             this.lblIntentos.Location = new System.Drawing.Point(22, 308);
             this.lblIntentos.Name = "lblIntentos";
             this.lblIntentos.Size = new System.Drawing.Size(300, 20);
-            this.lblIntentos.TabIndex = 5;
+            this.lblIntentos.TabIndex = 6;
             this.lblIntentos.Text = "Intentos restantes: 3";
             this.lblIntentos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -108,7 +123,7 @@ namespace prySampaolesiERP
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(98, 93);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
             // frmLogin
@@ -121,6 +136,7 @@ namespace prySampaolesiERP
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblIntentos);
             this.Controls.Add(this.btnIngresar);
+            this.Controls.Add(this.chkMostrarContrasenia);
             this.Controls.Add(this.txtContrasenia);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.lblContrasenia);
@@ -147,5 +163,6 @@ namespace prySampaolesiERP
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Label lblIntentos;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox chkMostrarContrasenia;
     }
 }

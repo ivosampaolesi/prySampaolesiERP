@@ -97,6 +97,11 @@ namespace prySampaolesiERP
             lblIntentos.Text = $"Intentos restantes: {intentos}";
         }
 
+        private void chkMostrarContrasenia_CheckedChanged(object sender, EventArgs e)
+        {
+            txtContrasenia.PasswordChar = chkMostrarContrasenia.Checked ? '\0' : '*';
+        }
+
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (conexion != null)
