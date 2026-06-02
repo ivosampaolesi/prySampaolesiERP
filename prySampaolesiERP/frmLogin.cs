@@ -81,10 +81,10 @@ namespace prySampaolesiERP
                 intentos--;
                 ActualizarIntentos();
                 if (intentos > 0)
-                    MessageBox.Show($"Datos incorrectos. Intentos restantes: {intentos}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Datos incorrectos. Intentos restantes: {intentos}", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    MessageBox.Show("Se agotaron los intentos. El programa se cerrará.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Se agotaron los intentos. El programa se cerrará.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Application.Exit();
                 }
                 txtContrasenia.Clear();

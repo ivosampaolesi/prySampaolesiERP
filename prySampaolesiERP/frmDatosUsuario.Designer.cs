@@ -279,6 +279,7 @@
             // 
             this.chkActivo.AutoSize = true;
             this.chkActivo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkActivo.Enabled = false;
             this.chkActivo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActivo.Location = new System.Drawing.Point(255, 190);
             this.chkActivo.Name = "chkActivo";
