@@ -164,6 +164,7 @@
             // 
             // cmbLocalidad
             // 
+            this.cmbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalidad.FormattingEnabled = true;
             this.cmbLocalidad.Location = new System.Drawing.Point(73, 60);
             this.cmbLocalidad.Name = "cmbLocalidad";
@@ -172,6 +173,7 @@
             // 
             // cmbProvincia
             // 
+            this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(73, 20);
             this.cmbProvincia.Name = "cmbProvincia";
@@ -239,6 +241,7 @@
             // 
             // cmbRedes
             // 
+            this.cmbRedes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRedes.FormattingEnabled = true;
             this.cmbRedes.Location = new System.Drawing.Point(73, 98);
             this.cmbRedes.Name = "cmbRedes";
