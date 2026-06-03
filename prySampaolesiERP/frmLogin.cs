@@ -26,23 +26,31 @@ namespace prySampaolesiERP
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            string mail = txtMail.Text.Trim();
+            string dni = txtMail.Text.Trim();
             string contrasenia = txtContrasenia.Text;
 
-            if (string.IsNullOrEmpty(mail) || string.IsNullOrEmpty(contrasenia))
+            if (string.IsNullOrEmpty(dni) || string.IsNullOrEmpty(contrasenia))
             {
-                MessageBox.Show("Ingrese mail y contraseña", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese DNI y contraseña", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!long.TryParse(dni, out long dniNumero))
+            {
+                MessageBox.Show("El DNI debe ser numérico", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             OleDbParameter[] parametros = new OleDbParameter[]
             {
-                new OleDbParameter("@mail", mail),
+                new OleDbParameter("@dni", dniNumero),
                 new OleDbParameter("@pass", contrasenia)
             };
 
             DataTable dt = conexion.EjecutarConsulta(
-                "SELECT IdUsuario, Mail FROM Usuario WHERE Mail = @mail AND Contrasenia = @pass", 
+                "SELECT Usuario.IdUsuario, Usuario.Mail " +
+                "FROM Usuario INNER JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
+                "WHERE DatosPersonales.DNI = @dni AND Usuario.Contrasenia = @pass",
                 parametros);
 
             if (dt != null && dt.Rows.Count > 0)

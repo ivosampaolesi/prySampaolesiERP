@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAuditoria.cs" />
-    <Compile Include="clsConexion.cs" />
+    <Compile Include="BD\clsConexion.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -35,9 +35,9 @@ namespace prySampaolesiERP
             this.lblMail.ForeColor = System.Drawing.Color.Black;
             this.lblMail.Location = new System.Drawing.Point(22, 123);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(39, 17);
+            this.lblMail.Size = new System.Drawing.Size(34, 17);
             this.lblMail.TabIndex = 0;
-            this.lblMail.Text = "Mail:";
+            this.lblMail.Text = "DNI:";
             // 
             // lblContrasenia
             // 
