@@ -31,6 +31,7 @@ namespace prySampaolesiERP
                 MostrarDatosUsuario();
                 btnAuditoria.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
                 btnGestionUsuarios.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
+                MostrarInicio();
                 
             }
             else
@@ -81,6 +82,8 @@ namespace prySampaolesiERP
 
         private void AbrirFormularioHijo(Form formularioHijo, string tituloSeccion)
         {
+            lblAvisoDatosPersonales.Visible = false;
+
             if (activeForm != null)
             {
                 activeForm.Close();
@@ -117,6 +120,7 @@ namespace prySampaolesiERP
         private void pnlContent_Resize(object sender, EventArgs e)
         {
             CentrarFormularioHijo();
+            CentrarAvisoDatosPersonales();
         }
 
         private void btnDatosPersonales_Click(object sender, EventArgs e)
@@ -128,6 +132,11 @@ namespace prySampaolesiERP
         private void btnInicio_Click(object sender, EventArgs e)
         {
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Inicio");
+            MostrarInicio();
+        }
+
+        private void MostrarInicio()
+        {
             if (activeForm != null)
             {
                 activeForm.Close();
@@ -135,6 +144,61 @@ namespace prySampaolesiERP
                 activeForm = null;
             }
             lblTituloSeccion.Text = "Inicio";
+            lblAvisoDatosPersonales.Visible = TieneDatosPersonalesIncompletos();
+            CentrarAvisoDatosPersonales();
+            lblAvisoDatosPersonales.BringToFront();
+        }
+
+        private bool TieneDatosPersonalesIncompletos()
+        {
+            OleDbParameter[] parametrosDatos = new OleDbParameter[]
+            {
+                new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+            };
+
+            DataTable dt = conexion.EjecutarConsulta(
+                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.Mail, Usuario.DNI, " +
+                "DatosPersonales.Direccion, DatosPersonales.Localidad, DatosPersonales.Provincia, " +
+                "DatosPersonales.Telefono, DatosPersonales.Geo " +
+                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
+                "WHERE Usuario.IdUsuario = @idUsuario",
+                parametrosDatos);
+
+            if (dt == null || dt.Rows.Count == 0)
+                return true;
+
+            DataRow fila = dt.Rows[0];
+            string[] columnasObligatorias = new string[]
+            {
+                "Nombre", "Apellido", "Mail", "DNI", "Direccion", "Localidad", "Provincia", "Telefono", "Geo"
+            };
+
+            foreach (string columna in columnasObligatorias)
+            {
+                if (fila[columna] == DBNull.Value || string.IsNullOrWhiteSpace(fila[columna].ToString()))
+                    return true;
+            }
+
+            DataTable dtRedes = conexion.EjecutarConsulta(
+                "SELECT COUNT(*) AS Cantidad FROM RedesUsuario WHERE IdUsuario = ?",
+                new OleDbParameter[]
+                {
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+                });
+
+            int cantidadRedes = dtRedes != null && dtRedes.Rows.Count > 0 ? Convert.ToInt32(dtRedes.Rows[0]["Cantidad"]) : 0;
+            return cantidadRedes == 0;
+        }
+
+        private void CentrarAvisoDatosPersonales()
+        {
+            if (lblAvisoDatosPersonales != null && pnlContent != null)
+            {
+                lblAvisoDatosPersonales.Location = new Point(
+                    (pnlContent.Width - lblAvisoDatosPersonales.Width) / 2,
+                    (pnlContent.Height - lblAvisoDatosPersonales.Height) / 2
+                );
+            }
         }
 
         private void btnAuditoria_Click(object sender, EventArgs e)
@@ -146,7 +210,28 @@ namespace prySampaolesiERP
         private void btnGestionUsuarios_Click(object sender, EventArgs e)
         {
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Gestion de Usuarios");
-            AbrirFormularioHijo(new frmGestionUsuarios(), "Gestion de Usuarios");
+            MostrarGestionUsuarios();
+        }
+
+        private void MostrarGestionUsuarios()
+        {
+            frmGestionUsuarios frm = new frmGestionUsuarios();
+            frm.SolicitarAgregarUsuario += frmGestionUsuarios_SolicitarAgregarUsuario;
+            AbrirFormularioHijo(frm, "Gestion de Usuarios");
+        }
+
+        private void frmGestionUsuarios_SolicitarAgregarUsuario(object sender, EventArgs e)
+        {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Boton Agregar Usuario");
+
+            frmAgregarUsuario frm = new frmAgregarUsuario();
+            frm.SolicitarVolverGestionUsuarios += frmAgregarUsuario_SolicitarVolverGestionUsuarios;
+            AbrirFormularioHijo(frm, "Agregar Usuario");
+        }
+
+        private void frmAgregarUsuario_SolicitarVolverGestionUsuarios(object sender, EventArgs e)
+        {
+            MostrarGestionUsuarios();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

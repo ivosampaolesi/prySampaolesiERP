@@ -48,6 +48,12 @@
             this.txtRedes = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.cmbRedes = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnAgregarRed = new System.Windows.Forms.Button();
+            this.btnQuitarRed = new System.Windows.Forms.Button();
+            this.lstRedesUsuario = new System.Windows.Forms.ListView();
+            this.colRed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUsuario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -218,6 +224,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lstRedesUsuario);
+            this.groupBox2.Controls.Add(this.btnQuitarRed);
+            this.groupBox2.Controls.Add(this.btnAgregarRed);
+            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.maskedTextBox1);
             this.groupBox2.Controls.Add(this.txtRedes);
             this.groupBox2.Controls.Add(this.txtMail);
@@ -230,7 +240,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(240, 183);
+            this.groupBox2.Size = new System.Drawing.Size(240, 370);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Contacto";
@@ -246,7 +256,7 @@
             // 
             // txtRedes
             // 
-            this.txtRedes.Location = new System.Drawing.Point(97, 146);
+            this.txtRedes.Location = new System.Drawing.Point(97, 154);
             this.txtRedes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRedes.Name = "txtRedes";
             this.txtRedes.Size = new System.Drawing.Size(120, 25);
@@ -269,6 +279,64 @@
             this.cmbRedes.Name = "cmbRedes";
             this.cmbRedes.Size = new System.Drawing.Size(120, 25);
             this.cmbRedes.TabIndex = 13;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(11, 157);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 17);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Usuario:";
+            // 
+            // btnAgregarRed
+            // 
+            this.btnAgregarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnAgregarRed.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarRed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAgregarRed.Location = new System.Drawing.Point(97, 187);
+            this.btnAgregarRed.Name = "btnAgregarRed";
+            this.btnAgregarRed.Size = new System.Drawing.Size(120, 28);
+            this.btnAgregarRed.TabIndex = 21;
+            this.btnAgregarRed.Text = "Agregar red";
+            this.btnAgregarRed.UseVisualStyleBackColor = false;
+            // 
+            // btnQuitarRed
+            // 
+            this.btnQuitarRed.Location = new System.Drawing.Point(97, 331);
+            this.btnQuitarRed.Name = "btnQuitarRed";
+            this.btnQuitarRed.Size = new System.Drawing.Size(120, 28);
+            this.btnQuitarRed.TabIndex = 22;
+            this.btnQuitarRed.Text = "Quitar red";
+            this.btnQuitarRed.UseVisualStyleBackColor = true;
+            // 
+            // lstRedesUsuario
+            // 
+            this.lstRedesUsuario.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colRed,
+            this.colUsuario});
+            this.lstRedesUsuario.FullRowSelect = true;
+            this.lstRedesUsuario.GridLines = true;
+            this.lstRedesUsuario.HideSelection = false;
+            this.lstRedesUsuario.Location = new System.Drawing.Point(14, 221);
+            this.lstRedesUsuario.MultiSelect = false;
+            this.lstRedesUsuario.Name = "lstRedesUsuario";
+            this.lstRedesUsuario.Size = new System.Drawing.Size(203, 104);
+            this.lstRedesUsuario.TabIndex = 23;
+            this.lstRedesUsuario.UseCompatibleStateImageBehavior = false;
+            this.lstRedesUsuario.View = System.Windows.Forms.View.Details;
+            // 
+            // colRed
+            // 
+            this.colRed.Text = "Red";
+            this.colRed.Width = 85;
+            // 
+            // colUsuario
+            // 
+            this.colUsuario.Text = "Usuario";
+            this.colUsuario.Width = 110;
             // 
             // label8
             // 
@@ -309,7 +377,7 @@
             this.chkActivo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkActivo.Enabled = false;
             this.chkActivo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActivo.Location = new System.Drawing.Point(340, 234);
+            this.chkActivo.Location = new System.Drawing.Point(340, 394);
             this.chkActivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(83, 27);
@@ -402,5 +470,11 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnAgregarRed;
+        private System.Windows.Forms.Button btnQuitarRed;
+        private System.Windows.Forms.ListView lstRedesUsuario;
+        private System.Windows.Forms.ColumnHeader colRed;
+        private System.Windows.Forms.ColumnHeader colUsuario;
     }
 }

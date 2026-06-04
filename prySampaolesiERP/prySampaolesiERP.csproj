@@ -53,51 +53,60 @@
   <ItemGroup>
     <Compile Include="clsAuditoria.cs" />
     <Compile Include="BD\clsConexion.cs" />
-    <Compile Include="frmLogin.cs">
+    <Compile Include="Formularios\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="Formularios\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Formularios\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Formularios\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDatosUsuario.cs">
+    <Compile Include="Formularios\frmDatosUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDatosUsuario.Designer.cs">
+    <Compile Include="Formularios\frmDatosUsuario.Designer.cs">
       <DependentUpon>frmDatosUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAuditoria.cs">
+    <Compile Include="Formularios\frmAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAuditoria.Designer.cs">
+    <Compile Include="Formularios\frmAuditoria.Designer.cs">
       <DependentUpon>frmAuditoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestionUsuarios.cs">
+    <Compile Include="Formularios\frmAgregarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestionUsuarios.Designer.cs">
+    <Compile Include="Formularios\frmAgregarUsuario.Designer.cs">
+      <DependentUpon>frmAgregarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmGestionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmGestionUsuarios.Designer.cs">
       <DependentUpon>frmGestionUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAuditoria.resx">
+    <EmbeddedResource Include="Formularios\frmAgregarUsuario.resx">
+      <DependentUpon>frmAgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmAuditoria.resx">
       <DependentUpon>frmAuditoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionUsuarios.resx">
+    <EmbeddedResource Include="Formularios\frmGestionUsuarios.resx">
       <DependentUpon>frmGestionUsuarios.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Formularios\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Formularios\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDatosUsuario.resx">
+    <EmbeddedResource Include="Formularios\frmDatosUsuario.resx">
       <DependentUpon>frmDatosUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

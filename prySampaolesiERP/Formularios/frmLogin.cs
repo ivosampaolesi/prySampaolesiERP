@@ -35,7 +35,7 @@ namespace prySampaolesiERP
                 return;
             }
 
-            if (!long.TryParse(dni, out long dniNumero))
+            if (!int.TryParse(dni, out int dniNumero))
             {
                 MessageBox.Show("El DNI debe ser numérico", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -43,8 +43,8 @@ namespace prySampaolesiERP
 
             OleDbParameter[] parametros = new OleDbParameter[]
             {
-                new OleDbParameter("@dni", dniNumero),
-                new OleDbParameter("@pass", contrasenia)
+                new OleDbParameter("@dni", OleDbType.Integer) { Value = dniNumero },
+                new OleDbParameter("@pass", OleDbType.VarWChar) { Value = contrasenia }
             };
 
             DataTable dt = conexion.EjecutarConsulta(
