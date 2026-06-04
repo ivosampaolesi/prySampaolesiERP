@@ -18,7 +18,8 @@ namespace prySampaolesiERP
             Load += frmAgregarUsuario_Load;
             FormClosing += frmAgregarUsuario_FormClosing;
             btnGuardar.Click += btnGuardar_Click;
-            btnCancelar.Click += btnCancelar_Click;
+          
+            btnVolver.Click += btnVolver_Click;
         }
 
         private void frmAgregarUsuario_Load(object sender, EventArgs e)
@@ -90,6 +91,11 @@ namespace prySampaolesiERP
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            SolicitarVolverGestionUsuarios?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             SolicitarVolverGestionUsuarios?.Invoke(this, EventArgs.Empty);
         }

@@ -147,7 +147,7 @@ namespace prySampaolesiERP
                 txtDireccion.Text = ObtenerTexto(fila, "Direccion");
                 txtGEO.Text = ObtenerTexto(fila, "Geo");
                 maskedTextBox1.Text = ObtenerTexto(fila, "Telefono");
-                chkActivo.Checked = ObtenerBooleano(fila, "Activo");
+             
 
                 SeleccionarComboPorTexto(cmbProvincia, ObtenerTexto(fila, "Provincia"));
                 SeleccionarComboPorTexto(cmbLocalidad, ObtenerTexto(fila, "Localidad"));
@@ -312,7 +312,7 @@ namespace prySampaolesiERP
                         new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
                         new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                         new OleDbParameter("@telefono", OleDbType.VarWChar) { Value = telefono },
-                        new OleDbParameter("@activo", OleDbType.Boolean) { Value = chkActivo.Checked },
+                       
                         new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() },
                         new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
                     });
@@ -327,7 +327,6 @@ namespace prySampaolesiERP
                     new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
                     new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                     new OleDbParameter("@telefono", OleDbType.VarWChar) { Value = telefono },
-                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = chkActivo.Checked },
                     new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() }
                 });
         }

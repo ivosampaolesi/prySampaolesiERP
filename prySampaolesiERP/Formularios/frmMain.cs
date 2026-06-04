@@ -120,7 +120,6 @@ namespace prySampaolesiERP
         private void pnlContent_Resize(object sender, EventArgs e)
         {
             CentrarFormularioHijo();
-            CentrarAvisoDatosPersonales();
         }
 
         private void btnDatosPersonales_Click(object sender, EventArgs e)
@@ -145,7 +144,6 @@ namespace prySampaolesiERP
             }
             lblTituloSeccion.Text = "Inicio";
             lblAvisoDatosPersonales.Visible = TieneDatosPersonalesIncompletos();
-            CentrarAvisoDatosPersonales();
             lblAvisoDatosPersonales.BringToFront();
         }
 
@@ -190,17 +188,6 @@ namespace prySampaolesiERP
             return cantidadRedes == 0;
         }
 
-        private void CentrarAvisoDatosPersonales()
-        {
-            if (lblAvisoDatosPersonales != null && pnlContent != null)
-            {
-                lblAvisoDatosPersonales.Location = new Point(
-                    (pnlContent.Width - lblAvisoDatosPersonales.Width) / 2,
-                    (pnlContent.Height - lblAvisoDatosPersonales.Height) / 2
-                );
-            }
-        }
-
         private void btnAuditoria_Click(object sender, EventArgs e)
         {
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Auditoria");
@@ -217,6 +204,7 @@ namespace prySampaolesiERP
         {
             frmGestionUsuarios frm = new frmGestionUsuarios();
             frm.SolicitarAgregarUsuario += frmGestionUsuarios_SolicitarAgregarUsuario;
+            frm.SolicitarEstadoUsuarios += frmGestionUsuarios_SolicitarEstadoUsuarios;
             AbrirFormularioHijo(frm, "Gestion de Usuarios");
         }
 
@@ -229,7 +217,20 @@ namespace prySampaolesiERP
             AbrirFormularioHijo(frm, "Agregar Usuario");
         }
 
+        private void frmGestionUsuarios_SolicitarEstadoUsuarios(object sender, EventArgs e)
+        {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Boton Estado de Usuarios");
+            frmEstadoUsuarios frm = new frmEstadoUsuarios();
+            frm.SolicitarVolverGestionUsuarios += frmEstadoUsuarios_SolicitarVolverGestionUsuarios;
+            AbrirFormularioHijo(frm, "Estado de Usuarios");
+        }
+
         private void frmAgregarUsuario_SolicitarVolverGestionUsuarios(object sender, EventArgs e)
+        {
+            MostrarGestionUsuarios();
+        }
+
+        private void frmEstadoUsuarios_SolicitarVolverGestionUsuarios(object sender, EventArgs e)
         {
             MostrarGestionUsuarios();
         }
@@ -256,6 +257,11 @@ namespace prySampaolesiERP
                 clsAuditoria.RegistrarCierreSesion(conexion, Program.UsuarioMail, Program.UsuarioPerfil);
                 conexion.Desconectar();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            lblAvisoDatosPersonales.Visible=false;
         }
     }
 }

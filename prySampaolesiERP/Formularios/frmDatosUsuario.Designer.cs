@@ -44,20 +44,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lstRedesUsuario = new System.Windows.Forms.ListView();
+            this.colRed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUsuario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnQuitarRed = new System.Windows.Forms.Button();
+            this.btnAgregarRed = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.txtRedes = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.cmbRedes = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnAgregarRed = new System.Windows.Forms.Button();
-            this.btnQuitarRed = new System.Windows.Forms.Button();
-            this.lstRedesUsuario = new System.Windows.Forms.ListView();
-            this.colRed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colUsuario = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.chkActivo = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -68,7 +67,7 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(97, 27);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(120, 25);
             this.txtDni.TabIndex = 0;
@@ -98,7 +97,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(97, 75);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(120, 25);
             this.txtApellido.TabIndex = 2;
@@ -117,7 +116,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(97, 126);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(120, 25);
             this.txtNombre.TabIndex = 4;
@@ -136,7 +135,7 @@
             // txtGEO
             // 
             this.txtGEO.Location = new System.Drawing.Point(97, 169);
-            this.txtGEO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGEO.Margin = new System.Windows.Forms.Padding(4);
             this.txtGEO.Name = "txtGEO";
             this.txtGEO.Size = new System.Drawing.Size(120, 25);
             this.txtGEO.TabIndex = 8;
@@ -155,7 +154,7 @@
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(97, 118);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(120, 25);
             this.txtDireccion.TabIndex = 6;
@@ -172,9 +171,9 @@
             this.groupBox1.Controls.Add(this.txtGEO);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(31, 206);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(271, 219);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
@@ -185,7 +184,7 @@
             this.cmbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalidad.FormattingEnabled = true;
             this.cmbLocalidad.Location = new System.Drawing.Point(97, 74);
-            this.cmbLocalidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbLocalidad.Margin = new System.Windows.Forms.Padding(4);
             this.cmbLocalidad.Name = "cmbLocalidad";
             this.cmbLocalidad.Size = new System.Drawing.Size(120, 25);
             this.cmbLocalidad.TabIndex = 13;
@@ -195,7 +194,7 @@
             this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(97, 25);
-            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(120, 25);
             this.cmbProvincia.TabIndex = 12;
@@ -237,80 +236,13 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(325, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(240, 370);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(240, 410);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Contacto";
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(97, 75);
-            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.maskedTextBox1.Mask = "000-000-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(120, 25);
-            this.maskedTextBox1.TabIndex = 16;
-            // 
-            // txtRedes
-            // 
-            this.txtRedes.Location = new System.Drawing.Point(97, 154);
-            this.txtRedes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtRedes.Name = "txtRedes";
-            this.txtRedes.Size = new System.Drawing.Size(120, 25);
-            this.txtRedes.TabIndex = 15;
-            // 
-            // txtMail
-            // 
-            this.txtMail.Location = new System.Drawing.Point(97, 31);
-            this.txtMail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(120, 25);
-            this.txtMail.TabIndex = 14;
-            // 
-            // cmbRedes
-            // 
-            this.cmbRedes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRedes.FormattingEnabled = true;
-            this.cmbRedes.Location = new System.Drawing.Point(97, 121);
-            this.cmbRedes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbRedes.Name = "cmbRedes";
-            this.cmbRedes.Size = new System.Drawing.Size(120, 25);
-            this.cmbRedes.TabIndex = 13;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(11, 157);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 17);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Usuario:";
-            // 
-            // btnAgregarRed
-            // 
-            this.btnAgregarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnAgregarRed.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarRed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAgregarRed.Location = new System.Drawing.Point(97, 187);
-            this.btnAgregarRed.Name = "btnAgregarRed";
-            this.btnAgregarRed.Size = new System.Drawing.Size(120, 28);
-            this.btnAgregarRed.TabIndex = 21;
-            this.btnAgregarRed.Text = "Agregar red";
-            this.btnAgregarRed.UseVisualStyleBackColor = false;
-            // 
-            // btnQuitarRed
-            // 
-            this.btnQuitarRed.Location = new System.Drawing.Point(97, 331);
-            this.btnQuitarRed.Name = "btnQuitarRed";
-            this.btnQuitarRed.Size = new System.Drawing.Size(120, 28);
-            this.btnQuitarRed.TabIndex = 22;
-            this.btnQuitarRed.Text = "Quitar red";
-            this.btnQuitarRed.UseVisualStyleBackColor = true;
             // 
             // lstRedesUsuario
             // 
@@ -320,7 +252,7 @@
             this.lstRedesUsuario.FullRowSelect = true;
             this.lstRedesUsuario.GridLines = true;
             this.lstRedesUsuario.HideSelection = false;
-            this.lstRedesUsuario.Location = new System.Drawing.Point(14, 221);
+            this.lstRedesUsuario.Location = new System.Drawing.Point(14, 255);
             this.lstRedesUsuario.MultiSelect = false;
             this.lstRedesUsuario.Name = "lstRedesUsuario";
             this.lstRedesUsuario.Size = new System.Drawing.Size(203, 104);
@@ -338,11 +270,78 @@
             this.colUsuario.Text = "Usuario";
             this.colUsuario.Width = 110;
             // 
+            // btnQuitarRed
+            // 
+            this.btnQuitarRed.Location = new System.Drawing.Point(97, 365);
+            this.btnQuitarRed.Name = "btnQuitarRed";
+            this.btnQuitarRed.Size = new System.Drawing.Size(120, 28);
+            this.btnQuitarRed.TabIndex = 22;
+            this.btnQuitarRed.Text = "Quitar red";
+            this.btnQuitarRed.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregarRed
+            // 
+            this.btnAgregarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnAgregarRed.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarRed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAgregarRed.Location = new System.Drawing.Point(97, 214);
+            this.btnAgregarRed.Name = "btnAgregarRed";
+            this.btnAgregarRed.Size = new System.Drawing.Size(120, 28);
+            this.btnAgregarRed.TabIndex = 21;
+            this.btnAgregarRed.Text = "Agregar red";
+            this.btnAgregarRed.UseVisualStyleBackColor = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(11, 184);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 17);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Usuario:";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(97, 88);
+            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.maskedTextBox1.Mask = "000-000-0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(120, 25);
+            this.maskedTextBox1.TabIndex = 16;
+            // 
+            // txtRedes
+            // 
+            this.txtRedes.Location = new System.Drawing.Point(97, 181);
+            this.txtRedes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRedes.Name = "txtRedes";
+            this.txtRedes.Size = new System.Drawing.Size(120, 25);
+            this.txtRedes.TabIndex = 15;
+            // 
+            // txtMail
+            // 
+            this.txtMail.Location = new System.Drawing.Point(97, 31);
+            this.txtMail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(120, 25);
+            this.txtMail.TabIndex = 14;
+            // 
+            // cmbRedes
+            // 
+            this.cmbRedes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRedes.FormattingEnabled = true;
+            this.cmbRedes.Location = new System.Drawing.Point(97, 139);
+            this.cmbRedes.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbRedes.Name = "cmbRedes";
+            this.cmbRedes.Size = new System.Drawing.Size(120, 25);
+            this.cmbRedes.TabIndex = 13;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(11, 79);
+            this.label8.Location = new System.Drawing.Point(11, 92);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 17);
@@ -364,26 +363,12 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(11, 124);
+            this.label11.Location = new System.Drawing.Point(11, 142);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 17);
             this.label11.TabIndex = 7;
             this.label11.Text = "Redes:";
-            // 
-            // chkActivo
-            // 
-            this.chkActivo.AutoSize = true;
-            this.chkActivo.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkActivo.Enabled = false;
-            this.chkActivo.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActivo.Location = new System.Drawing.Point(340, 394);
-            this.chkActivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Size = new System.Drawing.Size(83, 27);
-            this.chkActivo.TabIndex = 15;
-            this.chkActivo.Text = "Activo";
-            this.chkActivo.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -395,9 +380,9 @@
             this.groupBox3.Controls.Add(this.txtNombre);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(31, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(271, 183);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
@@ -408,8 +393,8 @@
             this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(460, 394);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Location = new System.Drawing.Point(463, 421);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 31);
             this.btnGuardar.TabIndex = 16;
@@ -421,13 +406,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(581, 439);
+            this.ClientSize = new System.Drawing.Size(581, 465);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.chkActivo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDatosUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personal";
@@ -438,7 +422,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -466,7 +449,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtRedes;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;

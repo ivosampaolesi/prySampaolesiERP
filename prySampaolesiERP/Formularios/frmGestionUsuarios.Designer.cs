@@ -16,8 +16,7 @@ namespace prySampaolesiERP
         private void InitializeComponent()
         {
             this.btnAgregarUsuarios = new System.Windows.Forms.Button();
-            this.btnEditarUsuarios = new System.Windows.Forms.Button();
-            this.btnDesactivarUsuarios = new System.Windows.Forms.Button();
+            this.btnEstadoUsuarios = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAgregarUsuarios
@@ -27,48 +26,33 @@ namespace prySampaolesiERP
             this.btnAgregarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAgregarUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarUsuarios.Location = new System.Drawing.Point(90, 30);
+            this.btnAgregarUsuarios.Location = new System.Drawing.Point(90, 55);
             this.btnAgregarUsuarios.Name = "btnAgregarUsuarios";
             this.btnAgregarUsuarios.Size = new System.Drawing.Size(240, 40);
             this.btnAgregarUsuarios.TabIndex = 0;
             this.btnAgregarUsuarios.Text = "Agregar Usuarios";
             this.btnAgregarUsuarios.UseVisualStyleBackColor = false;
             // 
-            // btnEditarUsuarios
+            // btnEstadoUsuarios
             // 
-            this.btnEditarUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnEditarUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditarUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnEditarUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnEditarUsuarios.Location = new System.Drawing.Point(90, 85);
-            this.btnEditarUsuarios.Name = "btnEditarUsuarios";
-            this.btnEditarUsuarios.Size = new System.Drawing.Size(240, 40);
-            this.btnEditarUsuarios.TabIndex = 1;
-            this.btnEditarUsuarios.Text = "Editar Usuarios";
-            this.btnEditarUsuarios.UseVisualStyleBackColor = false;
-            // 
-            // btnDesactivarUsuarios
-            // 
-            this.btnDesactivarUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnDesactivarUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDesactivarUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDesactivarUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDesactivarUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnDesactivarUsuarios.Location = new System.Drawing.Point(90, 140);
-            this.btnDesactivarUsuarios.Name = "btnDesactivarUsuarios";
-            this.btnDesactivarUsuarios.Size = new System.Drawing.Size(240, 40);
-            this.btnDesactivarUsuarios.TabIndex = 2;
-            this.btnDesactivarUsuarios.Text = "Desactivar Usuarios";
-            this.btnDesactivarUsuarios.UseVisualStyleBackColor = false;
+            this.btnEstadoUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnEstadoUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEstadoUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadoUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEstadoUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnEstadoUsuarios.Location = new System.Drawing.Point(90, 127);
+            this.btnEstadoUsuarios.Name = "btnEstadoUsuarios";
+            this.btnEstadoUsuarios.Size = new System.Drawing.Size(240, 40);
+            this.btnEstadoUsuarios.TabIndex = 2;
+            this.btnEstadoUsuarios.Text = "Estado de Usuarios";
+            this.btnEstadoUsuarios.UseVisualStyleBackColor = false;
             // 
             // frmGestionUsuarios
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(420, 220);
             this.Controls.Add(this.btnAgregarUsuarios);
-            this.Controls.Add(this.btnEditarUsuarios);
-            this.Controls.Add(this.btnDesactivarUsuarios);
+            this.Controls.Add(this.btnEstadoUsuarios);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmGestionUsuarios";
             this.ResumeLayout(false);
@@ -76,7 +60,6 @@ namespace prySampaolesiERP
         }
 
         private System.Windows.Forms.Button btnAgregarUsuarios;
-        private System.Windows.Forms.Button btnEditarUsuarios;
-        private System.Windows.Forms.Button btnDesactivarUsuarios;
+        private System.Windows.Forms.Button btnEstadoUsuarios;
     }
 }

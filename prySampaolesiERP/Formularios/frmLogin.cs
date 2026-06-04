@@ -48,13 +48,22 @@ namespace prySampaolesiERP
             };
 
             DataTable dt = conexion.EjecutarConsulta(
-                "SELECT Usuario.IdUsuario, Usuario.Mail " +
-                "FROM Usuario " +
+                "SELECT Usuario.IdUsuario, Usuario.Mail, DatosPersonales.Activo " +
+                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
                 "WHERE Usuario.DNI = @dni AND Usuario.Contrasenia = @pass",
                 parametros);
 
             if (dt != null && dt.Rows.Count > 0)
             {
+                bool usuarioActivo = dt.Rows[0]["Activo"] != DBNull.Value && Convert.ToBoolean(dt.Rows[0]["Activo"]);
+                if (!usuarioActivo)
+                {
+                    MessageBox.Show("El usuario fue desactivado. No puede ingresar al sistema.", "Usuario desactivado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContrasenia.Clear();
+                    txtMail.Focus();
+                    return;
+                }
+
                 Program.UsuarioID = (int)dt.Rows[0]["IdUsuario"];
                 Program.UsuarioMail = dt.Rows[0]["Mail"].ToString();
 
