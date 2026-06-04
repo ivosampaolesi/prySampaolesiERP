@@ -102,5 +102,40 @@ namespace prySampaolesiClaseBD
                 return false;
             }
         }
+
+        public bool EjecutarComando(string comando, OleDbParameter[] parametros)
+        {
+            try
+            {
+                using (OleDbCommand cmd = new OleDbCommand(comando, conexion))
+                {
+                    if (parametros != null)
+                        cmd.Parameters.AddRange(parametros);
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al ejecutar comando: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public object EjecutarEscalar(string consulta)
+        {
+            try
+            {
+                using (OleDbCommand cmd = new OleDbCommand(consulta, conexion))
+                {
+                    return cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en consulta: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace prySampaolesiERP
                 stplblEstado.Text = "Conexion exitosa :)";
                 MostrarDatosUsuario();
                 btnAuditoria.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
+                btnGestionUsuarios.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
                 
             }
             else
@@ -140,6 +141,12 @@ namespace prySampaolesiERP
         {
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Auditoria");
             AbrirFormularioHijo(new frmAuditoria(), "Auditoria");
+        }
+
+        private void btnGestionUsuarios_Click(object sender, EventArgs e)
+        {
+            clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Gestion de Usuarios");
+            AbrirFormularioHijo(new frmGestionUsuarios(), "Gestion de Usuarios");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

@@ -49,8 +49,8 @@ namespace prySampaolesiERP
 
             DataTable dt = conexion.EjecutarConsulta(
                 "SELECT Usuario.IdUsuario, Usuario.Mail " +
-                "FROM Usuario INNER JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
-                "WHERE DatosPersonales.DNI = @dni AND Usuario.Contrasenia = @pass",
+                "FROM Usuario " +
+                "WHERE Usuario.DNI = @dni AND Usuario.Contrasenia = @pass",
                 parametros);
 
             if (dt != null && dt.Rows.Count > 0)

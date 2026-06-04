@@ -34,6 +34,7 @@ namespace prySampaolesiERP
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnDatosPersonales = new System.Windows.Forms.Button();
+            this.btnGestionUsuarios = new System.Windows.Forms.Button();
             this.btnAuditoria = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
@@ -51,9 +52,10 @@ namespace prySampaolesiERP
             this.stpEstado.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stpEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stplblEstado});
-            this.stpEstado.Location = new System.Drawing.Point(0, 509);
+            this.stpEstado.Location = new System.Drawing.Point(0, 628);
             this.stpEstado.Name = "stpEstado";
-            this.stpEstado.Size = new System.Drawing.Size(884, 22);
+            this.stpEstado.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.stpEstado.Size = new System.Drawing.Size(1179, 26);
             this.stpEstado.TabIndex = 0;
             this.stpEstado.Text = "statusStrip1";
             // 
@@ -61,7 +63,7 @@ namespace prySampaolesiERP
             // 
             this.stplblEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stplblEstado.Name = "stplblEstado";
-            this.stplblEstado.Size = new System.Drawing.Size(127, 17);
+            this.stplblEstado.Size = new System.Drawing.Size(160, 20);
             this.stplblEstado.Text = "toolStripStatusLabel1";
             // 
             // pnlSidebar
@@ -69,13 +71,14 @@ namespace prySampaolesiERP
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.pnlSidebar.Controls.Add(this.btnInicio);
             this.pnlSidebar.Controls.Add(this.btnDatosPersonales);
+            this.pnlSidebar.Controls.Add(this.btnGestionUsuarios);
             this.pnlSidebar.Controls.Add(this.btnAuditoria);
             this.pnlSidebar.Controls.Add(this.btnSalir);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(165, 509);
+            this.pnlSidebar.Size = new System.Drawing.Size(220, 628);
             this.pnlSidebar.TabIndex = 1;
             // 
             // btnInicio
@@ -87,11 +90,11 @@ namespace prySampaolesiERP
             this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInicio.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio.ForeColor = System.Drawing.Color.White;
-            this.btnInicio.Location = new System.Drawing.Point(0, 12);
-            this.btnInicio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInicio.Location = new System.Drawing.Point(0, 15);
+            this.btnInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInicio.Name = "btnInicio";
-            this.btnInicio.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnInicio.Size = new System.Drawing.Size(165, 41);
+            this.btnInicio.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnInicio.Size = new System.Drawing.Size(220, 50);
             this.btnInicio.TabIndex = 0;
             this.btnInicio.Text = "🏠  Inicio";
             this.btnInicio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -107,16 +110,37 @@ namespace prySampaolesiERP
             this.btnDatosPersonales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDatosPersonales.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDatosPersonales.ForeColor = System.Drawing.Color.White;
-            this.btnDatosPersonales.Location = new System.Drawing.Point(0, 73);
-            this.btnDatosPersonales.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDatosPersonales.Location = new System.Drawing.Point(-19, 95);
+            this.btnDatosPersonales.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDatosPersonales.Name = "btnDatosPersonales";
-            this.btnDatosPersonales.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnDatosPersonales.Size = new System.Drawing.Size(165, 37);
+            this.btnDatosPersonales.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnDatosPersonales.Size = new System.Drawing.Size(248, 46);
             this.btnDatosPersonales.TabIndex = 1;
             this.btnDatosPersonales.Text = "👤  Datos Personales";
             this.btnDatosPersonales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDatosPersonales.UseVisualStyleBackColor = true;
             this.btnDatosPersonales.Click += new System.EventHandler(this.btnDatosPersonales_Click);
+            // 
+            // btnGestionUsuarios
+            // 
+            this.btnGestionUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGestionUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnGestionUsuarios.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(85)))), ((int)(((byte)(105)))));
+            this.btnGestionUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
+            this.btnGestionUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGestionUsuarios.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGestionUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnGestionUsuarios.Location = new System.Drawing.Point(-19, 159);
+            this.btnGestionUsuarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGestionUsuarios.Name = "btnGestionUsuarios";
+            this.btnGestionUsuarios.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnGestionUsuarios.Size = new System.Drawing.Size(239, 46);
+            this.btnGestionUsuarios.TabIndex = 3;
+            this.btnGestionUsuarios.Text = "👥  Gestion de Usuarios";
+            this.btnGestionUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGestionUsuarios.UseVisualStyleBackColor = true;
+            this.btnGestionUsuarios.Visible = false;
+            this.btnGestionUsuarios.Click += new System.EventHandler(this.btnGestionUsuarios_Click);
             // 
             // btnAuditoria
             // 
@@ -127,12 +151,12 @@ namespace prySampaolesiERP
             this.btnAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAuditoria.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAuditoria.ForeColor = System.Drawing.Color.White;
-            this.btnAuditoria.Location = new System.Drawing.Point(0, 118);
-            this.btnAuditoria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAuditoria.Location = new System.Drawing.Point(-19, 222);
+            this.btnAuditoria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAuditoria.Name = "btnAuditoria";
-            this.btnAuditoria.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnAuditoria.Size = new System.Drawing.Size(165, 37);
-            this.btnAuditoria.TabIndex = 3;
+            this.btnAuditoria.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnAuditoria.Size = new System.Drawing.Size(239, 46);
+            this.btnAuditoria.TabIndex = 4;
             this.btnAuditoria.Text = "📋  Auditoria";
             this.btnAuditoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAuditoria.UseVisualStyleBackColor = true;
@@ -150,11 +174,11 @@ namespace prySampaolesiERP
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.btnSalir.Location = new System.Drawing.Point(0, 457);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSalir.Location = new System.Drawing.Point(0, 564);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnSalir.Size = new System.Drawing.Size(165, 37);
+            this.btnSalir.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnSalir.Size = new System.Drawing.Size(220, 46);
             this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "🚪  Cerrar Sesión";
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -168,20 +192,19 @@ namespace prySampaolesiERP
             this.pnlHeader.Controls.Add(this.lblUsuario);
             this.pnlHeader.Controls.Add(this.lblFechaHora);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Location = new System.Drawing.Point(165, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlHeader.Location = new System.Drawing.Point(220, 0);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(719, 57);
+            this.pnlHeader.Size = new System.Drawing.Size(959, 70);
             this.pnlHeader.TabIndex = 2;
             // 
             // lblTituloSeccion
             // 
             this.lblTituloSeccion.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloSeccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.lblTituloSeccion.Location = new System.Drawing.Point(15, 16);
-            this.lblTituloSeccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTituloSeccion.Location = new System.Drawing.Point(20, 20);
             this.lblTituloSeccion.Name = "lblTituloSeccion";
-            this.lblTituloSeccion.Size = new System.Drawing.Size(188, 24);
+            this.lblTituloSeccion.Size = new System.Drawing.Size(360, 30);
             this.lblTituloSeccion.TabIndex = 0;
             this.lblTituloSeccion.Text = "Inicio";
             this.lblTituloSeccion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,10 +214,9 @@ namespace prySampaolesiERP
             this.lblUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(65)))), ((int)(((byte)(85)))));
-            this.lblUsuario.Location = new System.Drawing.Point(382, 12);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuario.Location = new System.Drawing.Point(509, 15);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(322, 16);
+            this.lblUsuario.Size = new System.Drawing.Size(429, 20);
             this.lblUsuario.TabIndex = 1;
             this.lblUsuario.Text = "Usuario";
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -204,39 +226,40 @@ namespace prySampaolesiERP
             this.lblFechaHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFechaHora.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaHora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblFechaHora.Location = new System.Drawing.Point(569, 31);
-            this.lblFechaHora.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFechaHora.Location = new System.Drawing.Point(759, 38);
             this.lblFechaHora.Name = "lblFechaHora";
-            this.lblFechaHora.Size = new System.Drawing.Size(135, 16);
+            this.lblFechaHora.Size = new System.Drawing.Size(180, 20);
             this.lblFechaHora.TabIndex = 2;
             this.lblFechaHora.Text = "Fecha/Hora";
             this.lblFechaHora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlContent
             // 
-            this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(245)))), ((int)(((byte)(249)))));
+            this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(165, 57);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlContent.Location = new System.Drawing.Point(220, 70);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(719, 452);
+            this.pnlContent.Size = new System.Drawing.Size(959, 558);
             this.pnlContent.TabIndex = 3;
             this.pnlContent.Resize += new System.EventHandler(this.pnlContent_Resize);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 531);
+            this.ClientSize = new System.Drawing.Size(1179, 654);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.stpEstado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main ERP";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.stpEstado.ResumeLayout(false);
             this.stpEstado.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
@@ -255,6 +278,7 @@ namespace prySampaolesiERP
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnDatosPersonales;
+        private System.Windows.Forms.Button btnGestionUsuarios;
         private System.Windows.Forms.Button btnAuditoria;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel pnlHeader;

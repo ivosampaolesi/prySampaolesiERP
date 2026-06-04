@@ -92,7 +92,7 @@ namespace prySampaolesiERP
 
                 DataTable dt = conexion.EjecutarConsulta(
                     "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.Mail, " +
-                    "DatosPersonales.DNI, DatosPersonales.Direccion, DatosPersonales.Localidad, " +
+                    "Usuario.DNI, DatosPersonales.Direccion, DatosPersonales.Localidad, " +
                     "DatosPersonales.Provincia, DatosPersonales.Telefono, DatosPersonales.Activo, DatosPersonales.Geo " +
                     "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
                     "WHERE Usuario.IdUsuario = @idUsuario",
