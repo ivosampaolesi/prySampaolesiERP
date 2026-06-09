@@ -15,6 +15,7 @@ namespace prySampaolesiERP
     public partial class frmDatosUsuario : Form
     {
         private clsConexion conexion;
+        private string estadoOriginal;
 
         public frmDatosUsuario()
         {
@@ -39,6 +40,7 @@ namespace prySampaolesiERP
                 GarantizarDatosPersonalesUsuario();
                 CargarDatosUsuario();
                 CargarRedesUsuario();
+                estadoOriginal = ObtenerEstadoActual();
             }
             else
             {
@@ -261,9 +263,15 @@ namespace prySampaolesiERP
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (estadoOriginal == ObtenerEstadoActual())
+            {
+                MessageBox.Show("No hay cambios para guardar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (GuardarDatosUsuario() && GuardarRedesUsuario())
             {
                 MessageBox.Show("Datos personales guardados correctamente.", "Datos personales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                estadoOriginal = ObtenerEstadoActual();
             }
         }
 
@@ -312,7 +320,7 @@ namespace prySampaolesiERP
                         new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
                         new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                         new OleDbParameter("@telefono", OleDbType.VarWChar) { Value = telefono },
-                       
+                        new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
                         new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() },
                         new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
                     });
@@ -327,6 +335,7 @@ namespace prySampaolesiERP
                     new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
                     new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                     new OleDbParameter("@telefono", OleDbType.VarWChar) { Value = telefono },
+                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
                     new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() }
                 });
         }
@@ -359,6 +368,23 @@ namespace prySampaolesiERP
             }
 
             return true;
+        }
+
+        private string ObtenerEstadoActual()
+        {
+            var valores = new System.Text.StringBuilder();
+            valores.Append(txtNombre.Text).Append("|");
+            valores.Append(txtApellido.Text).Append("|");
+            valores.Append(txtMail.Text).Append("|");
+            valores.Append(txtDni.Text).Append("|");
+            valores.Append(txtDireccion.Text).Append("|");
+            valores.Append(txtGEO.Text).Append("|");
+            valores.Append(maskedTextBox1.Text).Append("|");
+            valores.Append(cmbProvincia.Text).Append("|");
+            valores.Append(cmbLocalidad.Text).Append("|");
+            foreach (ListViewItem item in lstRedesUsuario.Items)
+                valores.Append(item.SubItems[0].Text).Append(":").Append(item.SubItems[1].Text).Append("|");
+            return valores.ToString();
         }
 
         private void FrmDatosUsuario_FormClosing(object sender, FormClosingEventArgs e)
