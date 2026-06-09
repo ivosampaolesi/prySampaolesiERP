@@ -272,12 +272,14 @@
             // 
             // btnQuitarRed
             // 
+            this.btnQuitarRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnQuitarRed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnQuitarRed.Location = new System.Drawing.Point(97, 365);
             this.btnQuitarRed.Name = "btnQuitarRed";
             this.btnQuitarRed.Size = new System.Drawing.Size(120, 28);
             this.btnQuitarRed.TabIndex = 22;
             this.btnQuitarRed.Text = "Quitar red";
-            this.btnQuitarRed.UseVisualStyleBackColor = true;
+            this.btnQuitarRed.UseVisualStyleBackColor = false;
             // 
             // btnAgregarRed
             // 
@@ -391,9 +393,10 @@
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(463, 421);
+            this.btnGuardar.Location = new System.Drawing.Point(463, 430);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 31);
@@ -406,7 +409,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(581, 465);
+            this.ClientSize = new System.Drawing.Size(581, 474);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

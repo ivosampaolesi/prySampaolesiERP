@@ -54,6 +54,20 @@ namespace prySampaolesiERP
                 return;
             }
 
+            OleDbParameter[] parametrosDni = new OleDbParameter[]
+            {
+                new OleDbParameter("@dni", OleDbType.Integer) { Value = dni }
+            };
+            DataTable dtExistente = conexion.EjecutarConsulta(
+                "SELECT IdUsuario FROM Usuario WHERE DNI = @dni",
+                parametrosDni);
+
+            if (dtExistente != null && dtExistente.Rows.Count > 0)
+            {
+                MessageBox.Show("El DNI ingresado ya se encuentra registrado.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             bool ok = conexion.EjecutarComando(
                 "INSERT INTO Usuario (Nombre, Apellido, DNI, Mail, Contrasenia) VALUES (?, ?, ?, ?, ?)",
                 new OleDbParameter[]
