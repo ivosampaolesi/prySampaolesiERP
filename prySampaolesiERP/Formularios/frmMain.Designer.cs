@@ -42,11 +42,15 @@ namespace prySampaolesiERP
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblFechaHora = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.lblAvisoDatosPersonales = new System.Windows.Forms.Label();
+            this.pnlAviso = new System.Windows.Forms.Panel();
+            this.lblCerrarAviso = new System.Windows.Forms.Label();
+            this.lblAvisoTitulo = new System.Windows.Forms.Label();
+            this.lblAvisoDetalle = new System.Windows.Forms.Label();
             this.stpEstado.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.pnlHeader.SuspendLayout();
             this.pnlContent.SuspendLayout();
+            this.pnlAviso.SuspendLayout();
             this.SuspendLayout();
             // 
             // stpEstado
@@ -238,7 +242,7 @@ namespace prySampaolesiERP
             // pnlContent
             // 
             this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
-            this.pnlContent.Controls.Add(this.lblAvisoDatosPersonales);
+            this.pnlContent.Controls.Add(this.pnlAviso);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(220, 70);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -247,22 +251,53 @@ namespace prySampaolesiERP
             this.pnlContent.TabIndex = 3;
             this.pnlContent.Resize += new System.EventHandler(this.pnlContent_Resize);
             // 
-            // lblAvisoDatosPersonales
+            // pnlAviso
             // 
-            this.lblAvisoDatosPersonales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAvisoDatosPersonales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(243)))), ((int)(((byte)(199)))));
-            this.lblAvisoDatosPersonales.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAvisoDatosPersonales.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvisoDatosPersonales.ForeColor = System.Drawing.Color.Red;
-            this.lblAvisoDatosPersonales.Location = new System.Drawing.Point(587, 431);
-            this.lblAvisoDatosPersonales.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAvisoDatosPersonales.Name = "lblAvisoDatosPersonales";
-            this.lblAvisoDatosPersonales.Size = new System.Drawing.Size(359, 109);
-            this.lblAvisoDatosPersonales.TabIndex = 0;
-            this.lblAvisoDatosPersonales.Text = "Tenes datos personales pendientes. Por favor accede a la pestaña de Datos Persona" +
-    "les en el menu de la izquierda y completa tus datos";
-            this.lblAvisoDatosPersonales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAvisoDatosPersonales.Visible = false;
+            this.pnlAviso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlAviso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(243)))), ((int)(((byte)(199)))));
+            this.pnlAviso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlAviso.Controls.Add(this.lblCerrarAviso);
+            this.pnlAviso.Controls.Add(this.lblAvisoTitulo);
+            this.pnlAviso.Controls.Add(this.lblAvisoDetalle);
+            this.pnlAviso.Location = new System.Drawing.Point(559, 318);
+            this.pnlAviso.Name = "pnlAviso";
+            this.pnlAviso.Size = new System.Drawing.Size(380, 220);
+            this.pnlAviso.TabIndex = 4;
+            this.pnlAviso.Visible = false;
+            // 
+            // lblCerrarAviso
+            // 
+            this.lblCerrarAviso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCerrarAviso.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblCerrarAviso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(113)))), ((int)(((byte)(108)))));
+            this.lblCerrarAviso.Location = new System.Drawing.Point(350, 5);
+            this.lblCerrarAviso.Name = "lblCerrarAviso";
+            this.lblCerrarAviso.Size = new System.Drawing.Size(25, 25);
+            this.lblCerrarAviso.TabIndex = 0;
+            this.lblCerrarAviso.Text = "×";
+            this.lblCerrarAviso.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCerrarAviso.Click += new System.EventHandler(this.lblCerrarAviso_Click);
+            this.lblCerrarAviso.MouseEnter += new System.EventHandler(this.lblCerrarAviso_MouseEnter);
+            this.lblCerrarAviso.MouseLeave += new System.EventHandler(this.lblCerrarAviso_MouseLeave);
+            // 
+            // lblAvisoTitulo
+            // 
+            this.lblAvisoTitulo.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.lblAvisoTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(83)))), ((int)(((byte)(9)))));
+            this.lblAvisoTitulo.Location = new System.Drawing.Point(15, 12);
+            this.lblAvisoTitulo.Name = "lblAvisoTitulo";
+            this.lblAvisoTitulo.Size = new System.Drawing.Size(325, 20);
+            this.lblAvisoTitulo.TabIndex = 1;
+            this.lblAvisoTitulo.Text = "⚠️ Datos pendientes por completar";
+            // 
+            // lblAvisoDetalle
+            // 
+            this.lblAvisoDetalle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+            this.lblAvisoDetalle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
+            this.lblAvisoDetalle.Location = new System.Drawing.Point(15, 38);
+            this.lblAvisoDetalle.Name = "lblAvisoDetalle";
+            this.lblAvisoDetalle.Size = new System.Drawing.Size(350, 170);
+            this.lblAvisoDetalle.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -284,7 +319,10 @@ namespace prySampaolesiERP
             this.stpEstado.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
             this.pnlHeader.ResumeLayout(false);
+            this.pnlAviso.ResumeLayout(false);
+            this.pnlAviso.PerformLayout();
             this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,6 +343,9 @@ namespace prySampaolesiERP
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTituloSeccion;
         private System.Windows.Forms.Panel pnlContent;
-        private System.Windows.Forms.Label lblAvisoDatosPersonales;
+        private System.Windows.Forms.Panel pnlAviso;
+        private System.Windows.Forms.Label lblCerrarAviso;
+        private System.Windows.Forms.Label lblAvisoTitulo;
+        private System.Windows.Forms.Label lblAvisoDetalle;
     }
 }

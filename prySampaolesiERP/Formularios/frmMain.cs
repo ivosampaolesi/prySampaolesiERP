@@ -82,7 +82,11 @@ namespace prySampaolesiERP
 
         private void AbrirFormularioHijo(Form formularioHijo, string tituloSeccion)
         {
-            lblAvisoDatosPersonales.Visible = false;
+           
+            if (pnlAviso != null)
+            {
+                pnlAviso.Visible = false;
+            }
 
             if (activeForm != null)
             {
@@ -120,6 +124,10 @@ namespace prySampaolesiERP
         private void pnlContent_Resize(object sender, EventArgs e)
         {
             CentrarFormularioHijo();
+            if (pnlAviso != null)
+            {
+                pnlAviso.Location = new Point(pnlContent.Width - pnlAviso.Width - 20, pnlContent.Height - pnlAviso.Height - 20);
+            }
         }
 
         private void btnDatosPersonales_Click(object sender, EventArgs e)
@@ -143,8 +151,7 @@ namespace prySampaolesiERP
                 activeForm = null;
             }
             lblTituloSeccion.Text = "Inicio";
-            lblAvisoDatosPersonales.Visible = TieneDatosPersonalesIncompletos();
-            lblAvisoDatosPersonales.BringToFront();
+            ActualizarAvisoPendientes();
         }
 
         private bool TieneDatosPersonalesIncompletos()
@@ -259,9 +266,113 @@ namespace prySampaolesiERP
             }
         }
 
+        private void lblCerrarAviso_Click(object sender, EventArgs e)
+        {
+            pnlAviso.Visible = false;
+        }
+
+        private void lblCerrarAviso_MouseEnter(object sender, EventArgs e)
+        {
+            lblCerrarAviso.ForeColor = Color.FromArgb(239, 68, 68);
+        }
+
+        private void lblCerrarAviso_MouseLeave(object sender, EventArgs e)
+        {
+            lblCerrarAviso.ForeColor = Color.FromArgb(120, 113, 108);
+        }
+
+        private void ActualizarAvisoPendientes()
+        {
+            if (pnlAviso == null) return;
+
+            var faltantes = ObtenerCamposFaltantes();
+            if (faltantes.Count > 0)
+            {
+                string mensaje = "Detectamos que aún te falta completar:\n\n";
+                foreach (var campo in faltantes)
+                {
+                    mensaje += $"  • {campo}\n";
+                }
+                mensaje += "\nPodés completarlos en \"Datos Personales\".";
+                lblAvisoDetalle.Text = mensaje;
+                pnlAviso.Visible = true;
+                pnlAviso.BringToFront();
+            }
+            else
+            {
+                pnlAviso.Visible = false;
+            }
+        }
+
+        private System.Collections.Generic.List<string> ObtenerCamposFaltantes()
+        {
+            var faltantes = new System.Collections.Generic.List<string>();
+
+            OleDbParameter[] parametrosDatos = new OleDbParameter[]
+            {
+                new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+            };
+
+            DataTable dt = conexion.EjecutarConsulta(
+                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.Mail, Usuario.DNI, " +
+                "DatosPersonales.Direccion, DatosPersonales.Localidad, DatosPersonales.Provincia, " +
+                "DatosPersonales.Telefono, DatosPersonales.Geo " +
+                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
+                "WHERE Usuario.IdUsuario = @idUsuario",
+                parametrosDatos);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow fila = dt.Rows[0];
+
+                var campos = new System.Collections.Generic.Dictionary<string, string>
+                {
+                    { "Nombre", "Nombre" },
+                    { "Apellido", "Apellido" },
+                    { "Mail", "Email" },
+                    { "DNI", "DNI" },
+                    { "Direccion", "Dirección" },
+                    { "Localidad", "Localidad" },
+                    { "Provincia", "Provincia" },
+                    { "Telefono", "Teléfono" },
+                    { "Geo", "Geolocalización" }
+                };
+
+                foreach (var campo in campos)
+                {
+                    if (fila[campo.Key] == DBNull.Value || string.IsNullOrWhiteSpace(fila[campo.Key].ToString()))
+                    {
+                        faltantes.Add(campo.Value);
+                    }
+                }
+            }
+            else
+            {
+                faltantes.Add("Datos Personales");
+            }
+
+            DataTable dtRedes = conexion.EjecutarConsulta(
+                "SELECT COUNT(*) AS Cantidad FROM RedesUsuario WHERE IdUsuario = ?",
+                new OleDbParameter[]
+                {
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+                });
+
+            int cantidadRedes = dtRedes != null && dtRedes.Rows.Count > 0 ? Convert.ToInt32(dtRedes.Rows[0]["Cantidad"]) : 0;
+            if (cantidadRedes == 0)
+            {
+                faltantes.Add("Redes Sociales");
+            }
+
+            return faltantes;
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            lblAvisoDatosPersonales.Visible=false;
+            if (pnlAviso != null)
+            {
+                pnlAviso.Visible = false;
+            }
         }
     }
 }
