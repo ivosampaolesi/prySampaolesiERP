@@ -36,7 +36,7 @@ namespace prySampaolesiERP
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(35, 64);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(56, 16);
+            this.lblNombre.Size = new System.Drawing.Size(44, 13);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
@@ -45,7 +45,7 @@ namespace prySampaolesiERP
             this.lblApellido.AutoSize = true;
             this.lblApellido.Location = new System.Drawing.Point(35, 104);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(57, 16);
+            this.lblApellido.Size = new System.Drawing.Size(44, 13);
             this.lblApellido.TabIndex = 1;
             this.lblApellido.Text = "Apellido";
             // 
@@ -54,7 +54,7 @@ namespace prySampaolesiERP
             this.lblDni.AutoSize = true;
             this.lblDni.Location = new System.Drawing.Point(35, 144);
             this.lblDni.Name = "lblDni";
-            this.lblDni.Size = new System.Drawing.Size(30, 16);
+            this.lblDni.Size = new System.Drawing.Size(26, 13);
             this.lblDni.TabIndex = 2;
             this.lblDni.Text = "DNI";
             // 
@@ -63,7 +63,7 @@ namespace prySampaolesiERP
             this.lblMail.AutoSize = true;
             this.lblMail.Location = new System.Drawing.Point(35, 184);
             this.lblMail.Name = "lblMail";
-            this.lblMail.Size = new System.Drawing.Size(32, 16);
+            this.lblMail.Size = new System.Drawing.Size(26, 13);
             this.lblMail.TabIndex = 3;
             this.lblMail.Text = "Mail";
             // 
@@ -72,7 +72,7 @@ namespace prySampaolesiERP
             this.lblContrasenia.AutoSize = true;
             this.lblContrasenia.Location = new System.Drawing.Point(35, 224);
             this.lblContrasenia.Name = "lblContrasenia";
-            this.lblContrasenia.Size = new System.Drawing.Size(76, 16);
+            this.lblContrasenia.Size = new System.Drawing.Size(61, 13);
             this.lblContrasenia.TabIndex = 4;
             this.lblContrasenia.Text = "Contraseña";
             // 
@@ -81,7 +81,7 @@ namespace prySampaolesiERP
             this.lblCargo.AutoSize = true;
             this.lblCargo.Location = new System.Drawing.Point(35, 264);
             this.lblCargo.Name = "lblCargo";
-            this.lblCargo.Size = new System.Drawing.Size(44, 16);
+            this.lblCargo.Size = new System.Drawing.Size(35, 13);
             this.lblCargo.TabIndex = 5;
             this.lblCargo.Text = "Cargo";
             // 
@@ -89,28 +89,28 @@ namespace prySampaolesiERP
             // 
             this.txtNombre.Location = new System.Drawing.Point(140, 60);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(220, 22);
+            this.txtNombre.Size = new System.Drawing.Size(220, 20);
             this.txtNombre.TabIndex = 6;
             // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(140, 100);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(220, 22);
+            this.txtApellido.Size = new System.Drawing.Size(220, 20);
             this.txtApellido.TabIndex = 7;
             // 
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(140, 140);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(220, 22);
+            this.txtDni.Size = new System.Drawing.Size(220, 20);
             this.txtDni.TabIndex = 8;
             // 
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(140, 180);
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(220, 22);
+            this.txtMail.Size = new System.Drawing.Size(220, 20);
             this.txtMail.TabIndex = 9;
             // 
             // txtContrasenia
@@ -118,16 +118,16 @@ namespace prySampaolesiERP
             this.txtContrasenia.Location = new System.Drawing.Point(140, 220);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.PasswordChar = '*';
-            this.txtContrasenia.Size = new System.Drawing.Size(220, 22);
+            this.txtContrasenia.Size = new System.Drawing.Size(111, 20);
             this.txtContrasenia.TabIndex = 10;
             // 
             // cmbPerfil
             // 
             this.cmbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPerfil.FormattingEnabled = true;
-            this.cmbPerfil.Location = new System.Drawing.Point(140, 260);
+            this.cmbPerfil.Location = new System.Drawing.Point(140, 261);
             this.cmbPerfil.Name = "cmbPerfil";
-            this.cmbPerfil.Size = new System.Drawing.Size(220, 24);
+            this.cmbPerfil.Size = new System.Drawing.Size(111, 21);
             this.cmbPerfil.TabIndex = 11;
             // 
             // btnVolver

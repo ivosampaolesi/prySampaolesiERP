@@ -22,8 +22,7 @@ namespace prySampaolesiERP
             InitializeComponent();
             this.Load += FrmEditarUsuario_Load;
             this.FormClosing += FrmDatosUsuario_FormClosing;
-            btnAgregarRed.Click += btnAgregarRed_Click;
-            btnQuitarRed.Click += btnQuitarRed_Click;
+            
             btnAgregarDomicilio.Click += btnAgregarDomicilio_Click;
             btnQuitarDomicilio.Click += btnQuitarDomicilio_Click;
             btnGuardar.Click += btnGuardar_Click;
