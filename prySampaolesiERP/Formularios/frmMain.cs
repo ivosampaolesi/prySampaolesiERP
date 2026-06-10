@@ -326,11 +326,9 @@ namespace prySampaolesiERP
 
             DataTable dt = conexion.EjecutarConsulta(
 
-                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.Mail, Usuario.DNI, " +
+                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, " +
 
-                "DatosPersonales.Localidad, DatosPersonales.Provincia, " +
-
-                "DatosPersonales.Telefono, DatosPersonales.Geo " +
+                "DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
 
                 "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
 
@@ -352,7 +350,7 @@ namespace prySampaolesiERP
 
             {
 
-                "Nombre", "Apellido", "Mail", "DNI", "Localidad", "Provincia", "Telefono", "Geo"
+                "Nombre", "Apellido", "DNI", "Localidad", "Provincia", "Geo"
 
             };
 
@@ -370,9 +368,9 @@ namespace prySampaolesiERP
 
 
 
-            DataTable dtRedes = conexion.EjecutarConsulta(
+            DataTable dtMedios = conexion.EjecutarConsulta(
 
-                "SELECT COUNT(*) AS Cantidad FROM RedesUsuario WHERE IdUsuario = ?",
+                "SELECT COUNT(*) AS Cantidad FROM MediosContacto WHERE IdUsuario = ?",
 
                 new OleDbParameter[]
 
@@ -384,9 +382,9 @@ namespace prySampaolesiERP
 
 
 
-            int cantidadRedes = dtRedes != null && dtRedes.Rows.Count > 0 ? Convert.ToInt32(dtRedes.Rows[0]["Cantidad"]) : 0;
+            int cantidadMedios = dtMedios != null && dtMedios.Rows.Count > 0 ? Convert.ToInt32(dtMedios.Rows[0]["Cantidad"]) : 0;
 
-            if (cantidadRedes == 0)
+            if (cantidadMedios == 0)
 
                 return true;
 
@@ -652,11 +650,9 @@ namespace prySampaolesiERP
 
             DataTable dt = conexion.EjecutarConsulta(
 
-                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.Mail, Usuario.DNI, " +
+                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, " +
 
-                "DatosPersonales.Localidad, DatosPersonales.Provincia, " +
-
-                "DatosPersonales.Telefono, DatosPersonales.Geo " +
+                "DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
 
                 "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
 
@@ -682,16 +678,12 @@ namespace prySampaolesiERP
 
                     { "Apellido", "Apellido" },
 
-                    { "Mail", "Email" },
-
                     { "DNI", "DNI" },
 
 
                     { "Localidad", "Localidad" },
 
                     { "Provincia", "Provincia" },
-
-                    { "Telefono", "Teléfono" },
 
                     { "Geo", "Geolocalización" }
 
@@ -725,9 +717,9 @@ namespace prySampaolesiERP
 
 
 
-            DataTable dtRedes = conexion.EjecutarConsulta(
+            DataTable dtMedios = conexion.EjecutarConsulta(
 
-                "SELECT COUNT(*) AS Cantidad FROM RedesUsuario WHERE IdUsuario = ?",
+                "SELECT COUNT(*) AS Cantidad FROM MediosContacto WHERE IdUsuario = ?",
 
                 new OleDbParameter[]
 
@@ -739,13 +731,13 @@ namespace prySampaolesiERP
 
 
 
-            int cantidadRedes = dtRedes != null && dtRedes.Rows.Count > 0 ? Convert.ToInt32(dtRedes.Rows[0]["Cantidad"]) : 0;
+            int cantidadMedios = dtMedios != null && dtMedios.Rows.Count > 0 ? Convert.ToInt32(dtMedios.Rows[0]["Cantidad"]) : 0;
 
-            if (cantidadRedes == 0)
+            if (cantidadMedios == 0)
 
             {
 
-                faltantes.Add("Redes Sociales");
+                faltantes.Add("Medios de Contacto");
 
             }
 

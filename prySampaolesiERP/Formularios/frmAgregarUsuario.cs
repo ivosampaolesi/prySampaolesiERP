@@ -18,8 +18,14 @@ namespace prySampaolesiERP
             Load += frmAgregarUsuario_Load;
             FormClosing += frmAgregarUsuario_FormClosing;
             btnGuardar.Click += btnGuardar_Click;
-          
             btnVolver.Click += btnVolver_Click;
+            txtDni.KeyPress += TxtDni_KeyPress;
+        }
+
+        private void TxtDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                e.Handled = true;
         }
 
         private void frmAgregarUsuario_Load(object sender, EventArgs e)
@@ -28,6 +34,8 @@ namespace prySampaolesiERP
             if (conexion.Conectar())
             {
                 CargarPerfiles();
+                CargarProvincias();
+                cmbProvincia2.SelectedIndexChanged += cmbProvincia2_SelectedIndexChanged;
             }
         }
 
@@ -39,6 +47,39 @@ namespace prySampaolesiERP
             cmbPerfil.ValueMember = "IdPerfil";
         }
 
+        private void CargarProvincias()
+        {
+            DataTable dt = conexion.ObtenerDatos("Provincias");
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cmbProvincia2.DataSource = dt;
+                cmbProvincia2.DisplayMember = "Nombre";
+                cmbProvincia2.SelectedIndex = -1;
+            }
+        }
+
+        private void CargarLocalidades()
+        {
+            DataTable dt = conexion.ObtenerDatos("LocalidadesCordoba");
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cmbLocalidad2.DataSource = dt;
+                cmbLocalidad2.DisplayMember = "Nombre";
+                cmbLocalidad2.SelectedIndex = -1;
+            }
+        }
+
+        private void cmbProvincia2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbProvincia2.SelectedIndex >= 0 && cmbProvincia2.Text.Equals("Córdoba", StringComparison.OrdinalIgnoreCase))
+                CargarLocalidades();
+            else
+            {
+                cmbLocalidad2.DataSource = null;
+                cmbLocalidad2.Items.Clear();
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (txtNombre.Text.Trim() == "" || txtApellido.Text.Trim() == "" || txtDni.Text.Trim() == "" ||
@@ -48,9 +89,9 @@ namespace prySampaolesiERP
                 return;
             }
 
-            if (!int.TryParse(txtDni.Text.Trim(), out int dni))
+            if (txtDni.Text.Trim().Length < 7 || !int.TryParse(txtDni.Text.Trim(), out int dni))
             {
-                MessageBox.Show("El DNI debe ser numerico.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El DNI debe ser numerico y tener al menos 7 digitos.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -95,13 +136,50 @@ namespace prySampaolesiERP
 
         private bool CrearDatosPersonalesUsuario(int idUsuario)
         {
-            return conexion.EjecutarComando(
-                "INSERT INTO DatosPersonales (IdUsuario, Activo) VALUES (?, ?)",
+            string provincia = cmbProvincia2.SelectedIndex >= 0 ? cmbProvincia2.Text : "";
+            string localidad = cmbLocalidad2.SelectedIndex >= 0 ? cmbLocalidad2.Text : "";
+            string geo = txtGEO.Text.Trim();
+
+            if (!conexion.EjecutarComando(
+                "INSERT INTO DatosPersonales (IdUsuario, Provincia, Localidad, Geo, Activo) VALUES (?, ?, ?, ?, ?)",
                 new OleDbParameter[]
                 {
                     new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
+                    new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
+                    new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
+                    new OleDbParameter("@geo", OleDbType.VarWChar) { Value = geo },
                     new OleDbParameter("@activo", OleDbType.Boolean) { Value = true }
-                });
+                }))
+                return false;
+
+            if (!string.IsNullOrWhiteSpace(txtDomicilio.Text) && !conexion.EjecutarComando(
+                "INSERT INTO Domicilios (IdUsuario, Domicilio, Detalle) VALUES (?, ?, ?)",
+                new OleDbParameter[]
+                {
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
+                    new OleDbParameter("@domicilio", OleDbType.VarWChar) { Value = txtDomicilio.Text.Trim() },
+                    new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = txtDetalleDomicilio.Text.Trim() }
+                }))
+                return false;
+
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                DataTable dtCelular = conexion.EjecutarConsulta("SELECT IdMedio FROM Medios WHERE NombreMedio = 'NumeroCelular'");
+                int idMedioCelular = dtCelular != null && dtCelular.Rows.Count > 0 ? Convert.ToInt32(dtCelular.Rows[0]["IdMedio"]) : 0;
+
+                if (idMedioCelular > 0 && !conexion.EjecutarComando(
+                    "INSERT INTO MediosContacto (IdUsuario, IdMedio, UsuarioMedio, Detalles) VALUES (?, ?, ?, ?)",
+                    new OleDbParameter[]
+                    {
+                        new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
+                        new OleDbParameter("@idMedio", OleDbType.Integer) { Value = idMedioCelular },
+                        new OleDbParameter("@usuarioMedio", OleDbType.VarWChar) { Value = textBox1.Text.Trim() },
+                        new OleDbParameter("@detalles", OleDbType.VarWChar) { Value = "" }
+                    }))
+                    return false;
+            }
+
+            return true;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -120,6 +198,16 @@ namespace prySampaolesiERP
             {
                 conexion.Desconectar();
             }
+        }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
