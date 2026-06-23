@@ -14,6 +14,7 @@ namespace prySampaolesiERP
         public frmLogin()
         {
             InitializeComponent();
+            ValidadorUI.InicializarValidadores(this);
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -29,7 +30,18 @@ namespace prySampaolesiERP
             string dni = txtMail.Text.Trim();
             string contrasenia = txtContrasenia.Text;
 
-            if (string.IsNullOrEmpty(dni) || string.IsNullOrEmpty(contrasenia))
+            bool hasError = false;
+            if (string.IsNullOrEmpty(dni))
+            {
+                ValidadorUI.PintarError(txtMail);
+                hasError = true;
+            }
+            if (string.IsNullOrEmpty(contrasenia))
+            {
+                ValidadorUI.PintarError(txtContrasenia);
+                hasError = true;
+            }
+            if (hasError)
             {
                 MessageBox.Show("Ingrese DNI y contraseña", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -37,6 +49,7 @@ namespace prySampaolesiERP
 
             if (!int.TryParse(dni, out int dniNumero))
             {
+                ValidadorUI.PintarError(txtMail);
                 MessageBox.Show("El DNI debe ser numérico", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }

@@ -30,6 +30,7 @@ namespace prySampaolesiERP
         {
             this.idUsuarioSeleccionado = idUsuario;
             InitializeComponent();
+            ValidadorUI.InicializarValidadores(this);
             this.Load += FrmEditarUsuario_Load;
             this.FormClosing += FrmDatosUsuario_FormClosing;
 
@@ -230,6 +231,7 @@ namespace prySampaolesiERP
             string usuarioMedio = txtMedioIngresado.Text.Trim();
             if (usuarioMedio == "")
             {
+                ValidadorUI.PintarError(txtMedioIngresado);
                 MessageBox.Show("Ingrese el usuario, teléfono o mail.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -295,6 +297,7 @@ namespace prySampaolesiERP
         {
             if (txtDni.Text.Trim().Length < 7 || !int.TryParse(txtDni.Text.Trim(), out int dni))
             {
+                ValidadorUI.PintarError(txtDni);
                 MessageBox.Show("El DNI debe ser numerico y tener al menos 7 digitos.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
@@ -370,6 +373,7 @@ namespace prySampaolesiERP
             string domicilio = txtDomicilio.Text.Trim();
             if (domicilio == "")
             {
+                ValidadorUI.PintarError(txtDomicilio);
                 MessageBox.Show("Ingrese un domicilio.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }

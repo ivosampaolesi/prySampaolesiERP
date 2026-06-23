@@ -21,6 +21,7 @@ namespace prySampaolesiERP
             btnVolver.Click += btnVolver_Click;
             txtDni.KeyPress += TxtDni_KeyPress;
             txtNumeroCelu.KeyPress += TxtDni_KeyPress;
+            ValidadorUI.InicializarValidadores(this);
         }
 
         private void TxtDni_KeyPress(object sender, KeyPressEventArgs e)
@@ -83,8 +84,18 @@ namespace prySampaolesiERP
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text.Trim() == "" || txtApellido.Text.Trim() == "" || txtDni.Text.Trim() == "" ||
-                txtMail.Text.Trim() == "" || txtContrasenia.Text == "" || cmbPerfil.SelectedValue == null)
+            bool hasEmpty = false;
+            TextBox[] checkEmpty = { txtNombre, txtApellido, txtDni, txtMail, txtContrasenia };
+            foreach (var txt in checkEmpty)
+            {
+                if (string.IsNullOrWhiteSpace(txt.Text))
+                {
+                    ValidadorUI.PintarError(txt);
+                    hasEmpty = true;
+                }
+            }
+
+            if (hasEmpty || cmbPerfil.SelectedValue == null)
             {
                 MessageBox.Show("Complete todos los datos.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -92,6 +103,7 @@ namespace prySampaolesiERP
 
             if (txtDni.Text.Trim().Length < 7 || !int.TryParse(txtDni.Text.Trim(), out int dni))
             {
+                ValidadorUI.PintarError(txtDni);
                 MessageBox.Show("El DNI debe ser numerico y tener al menos 7 digitos.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
