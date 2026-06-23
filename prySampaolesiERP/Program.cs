@@ -38,9 +38,9 @@ namespace prySampaolesiERP
             {
                 foreach (Control c in container.Controls)
                 {
-                    if (c is TextBox txt && txt.Tag?.ToString() == "Error")
+                    if ((c is TextBox || c is ComboBox) && c.Tag?.ToString() == "Error")
                     {
-                        ControlPaint.DrawBorder(e.Graphics, new Rectangle(txt.Left - 1, txt.Top - 1, txt.Width + 2, txt.Height + 2), Color.Red, ButtonBorderStyle.Solid);
+                        ControlPaint.DrawBorder(e.Graphics, new Rectangle(c.Left - 1, c.Top - 1, c.Width + 2, c.Height + 2), Color.Red, ButtonBorderStyle.Solid);
                     }
                 }
             };
@@ -49,14 +49,12 @@ namespace prySampaolesiERP
             {
                 if (c is TextBox txt)
                 {
-                    txt.TextChanged += (s, e) =>
-                    {
-                        if (txt.Tag?.ToString() == "Error")
-                        {
-                            txt.Tag = null;
-                            txt.Parent.Invalidate();
-                        }
-                    };
+                    txt.TextChanged += (s, e) => { LimpiarError(txt); };
+                }
+                else if (c is ComboBox cmb)
+                {
+                    cmb.SelectedIndexChanged += (s, e) => { LimpiarError(cmb); };
+                    cmb.TextChanged += (s, e) => { LimpiarError(cmb); };
                 }
                 else if (c.HasChildren)
                 {
@@ -65,12 +63,21 @@ namespace prySampaolesiERP
             }
         }
 
-        public static void PintarError(params TextBox[] textboxes)
+        private static void LimpiarError(Control c)
         {
-            foreach (var txt in textboxes)
+            if (c.Tag?.ToString() == "Error")
             {
-                txt.Tag = "Error";
-                txt.Parent.Invalidate();
+                c.Tag = null;
+                c.Parent.Invalidate();
+            }
+        }
+
+        public static void PintarError(params Control[] controls)
+        {
+            foreach (var c in controls)
+            {
+                c.Tag = "Error";
+                c.Parent.Invalidate();
             }
         }
     }

@@ -38,6 +38,7 @@ namespace prySampaolesiERP
                 CargarPerfiles();
                 CargarProvincias();
                 cmbProvincia2.SelectedIndexChanged += cmbProvincia2_SelectedIndexChanged;
+                cmbPerfil.SelectedIndex = -1;
             }
         }
 
@@ -85,8 +86,8 @@ namespace prySampaolesiERP
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             bool hasEmpty = false;
-            TextBox[] checkEmpty = { txtNombre, txtApellido, txtDni, txtMail, txtContrasenia };
-            foreach (var txt in checkEmpty)
+            TextBox[] checkEmptyTxt = { txtNombre, txtApellido, txtDni, txtMail, txtContrasenia, txtNumeroCelu, txtDomicilio, txtDetalleDomicilio, txtGEO };
+            foreach (var txt in checkEmptyTxt)
             {
                 if (string.IsNullOrWhiteSpace(txt.Text))
                 {
@@ -95,7 +96,17 @@ namespace prySampaolesiERP
                 }
             }
 
-            if (hasEmpty || cmbPerfil.SelectedValue == null)
+            ComboBox[] checkEmptyCmb = { cmbPerfil, cmbProvincia2, cmbLocalidad2 };
+            foreach (var cmb in checkEmptyCmb)
+            {
+                if (cmb.SelectedValue == null || cmb.SelectedIndex < 0 || string.IsNullOrWhiteSpace(cmb.Text))
+                {
+                    ValidadorUI.PintarError(cmb);
+                    hasEmpty = true;
+                }
+            }
+
+            if (hasEmpty)
             {
                 MessageBox.Show("Complete todos los datos.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
