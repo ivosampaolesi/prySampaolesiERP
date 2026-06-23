@@ -62,8 +62,10 @@ namespace prySampaolesiERP
 
                 btnAuditoria.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
 
-                btnGestionUsuarios.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase);
-
+                
+                btnGestionUsuarios.Visible = Program.UsuarioPerfil.Equals("Administrador", StringComparison.OrdinalIgnoreCase) ||
+                                             Program.UsuarioPerfil.Equals("Recursos Humanos", StringComparison.OrdinalIgnoreCase);
+                
                 MostrarInicio();
 
                 
