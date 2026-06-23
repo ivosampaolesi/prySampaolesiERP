@@ -6,13 +6,15 @@ using System.Windows.Forms;
 
 namespace prySampaolesiERP
 {
-    public partial class frmEstadoUsuarios : Form
+    public partial class frmEditarUsuarios : Form
     {
         private clsConexion conexion;
 
         public event EventHandler SolicitarVolverGestionUsuarios;
 
-        public frmEstadoUsuarios()
+        public event EventHandler<int> SolicitarEditarUsuario;
+
+        public frmEditarUsuarios()
         {
             InitializeComponent();
             Load += frmEstadoUsuarios_Load;
@@ -22,6 +24,7 @@ namespace prySampaolesiERP
             btnCambiarEstado.Click += btnCambiarEstado_Click;
             btnVolver.Click += btnVolver_Click;
             dgvUsuarios.SelectionChanged += dgvUsuarios_SelectionChanged;
+            btnEditarUsuario.Click += btnEditarUsuario_Click;
         }
 
         private void frmEstadoUsuarios_Load(object sender, EventArgs e)
@@ -109,6 +112,7 @@ namespace prySampaolesiERP
         {
             bool haySeleccion = dgvUsuarios.CurrentRow != null && !dgvUsuarios.CurrentRow.IsNewRow;
             btnCambiarEstado.Enabled = haySeleccion;
+            btnEditarUsuario.Enabled = haySeleccion;
 
             if (!haySeleccion)
             {
@@ -118,6 +122,18 @@ namespace prySampaolesiERP
 
             bool activo = Convert.ToBoolean(dgvUsuarios.CurrentRow.Cells["Activo"].Value);
             btnCambiarEstado.Text = activo ? "Desactivar usuario" : "Activar usuario";
+        }
+
+        private void btnEditarUsuario_Click(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.CurrentRow == null || dgvUsuarios.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Por favor, seleccione un usuario de la grilla.", "Editar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int idUsuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdUsuario"].Value);
+            SolicitarEditarUsuario?.Invoke(this, idUsuario);
         }
 
         private void btnCambiarEstado_Click(object sender, EventArgs e)

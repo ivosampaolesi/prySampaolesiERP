@@ -12,7 +12,7 @@ namespace prySampaolesiERP
         {
             InitializeComponent();
             btnAgregarUsuarios.Click += btnAgregarUsuarios_Click;
-            btnEstadoUsuarios.Click += btnEstadoUsuarios_Click;
+            btnEditarUsuarios.Click += btnEstadoUsuarios_Click;
         }
 
         private void btnAgregarUsuarios_Click(object sender, EventArgs e)

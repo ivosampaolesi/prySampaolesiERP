@@ -90,8 +90,19 @@ namespace prySampaolesiERP
 
                 frmMain frm = new frmMain();
                 this.Hide();
-                frm.ShowDialog();
-                this.Close();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    this.Show();
+                    txtContrasenia.Clear();
+                    txtMail.Clear();
+                    intentos = 3;
+                    ActualizarIntentos();
+                    txtMail.Focus();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
             else
             {

@@ -20,6 +20,7 @@ namespace prySampaolesiERP
             btnGuardar.Click += btnGuardar_Click;
             btnVolver.Click += btnVolver_Click;
             txtDni.KeyPress += TxtDni_KeyPress;
+            txtNumeroCelu.KeyPress += TxtDni_KeyPress;
         }
 
         private void TxtDni_KeyPress(object sender, KeyPressEventArgs e)
@@ -162,7 +163,7 @@ namespace prySampaolesiERP
                 }))
                 return false;
 
-            if (!string.IsNullOrWhiteSpace(textBox1.Text))
+            if (!string.IsNullOrWhiteSpace(txtNumeroCelu.Text))
             {
                 DataTable dtCelular = conexion.EjecutarConsulta("SELECT IdMedio FROM Medios WHERE NombreMedio = 'NumeroCelular'");
                 int idMedioCelular = dtCelular != null && dtCelular.Rows.Count > 0 ? Convert.ToInt32(dtCelular.Rows[0]["IdMedio"]) : 0;
@@ -173,7 +174,7 @@ namespace prySampaolesiERP
                     {
                         new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
                         new OleDbParameter("@idMedio", OleDbType.Integer) { Value = idMedioCelular },
-                        new OleDbParameter("@usuarioMedio", OleDbType.VarWChar) { Value = textBox1.Text.Trim() },
+                        new OleDbParameter("@usuarioMedio", OleDbType.VarWChar) { Value = txtNumeroCelu.Text.Trim() },
                         new OleDbParameter("@detalles", OleDbType.VarWChar) { Value = "" }
                     }))
                     return false;

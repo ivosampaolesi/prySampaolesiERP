@@ -79,11 +79,11 @@ namespace prySampaolesiERP
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblIngresarMedio = new System.Windows.Forms.Label();
+            this.txtMedioIngresado = new System.Windows.Forms.TextBox();
+            this.btnQuitarMedio = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbMedios = new System.Windows.Forms.ComboBox();
@@ -98,7 +98,7 @@ namespace prySampaolesiERP
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(97, 27);
-            this.txtDni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDni.Margin = new System.Windows.Forms.Padding(4);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(213, 25);
             this.txtDni.TabIndex = 0;
@@ -128,7 +128,7 @@ namespace prySampaolesiERP
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(97, 75);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(4);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(213, 25);
             this.txtApellido.TabIndex = 2;
@@ -147,7 +147,7 @@ namespace prySampaolesiERP
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(97, 126);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(213, 25);
             this.txtNombre.TabIndex = 4;
@@ -166,7 +166,7 @@ namespace prySampaolesiERP
             // txtGEO
             // 
             this.txtGEO.Location = new System.Drawing.Point(107, 363);
-            this.txtGEO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGEO.Margin = new System.Windows.Forms.Padding(4);
             this.txtGEO.Name = "txtGEO";
             this.txtGEO.Size = new System.Drawing.Size(203, 25);
             this.txtGEO.TabIndex = 8;
@@ -185,7 +185,7 @@ namespace prySampaolesiERP
             // txtDomicilio
             // 
             this.txtDomicilio.Location = new System.Drawing.Point(107, 112);
-            this.txtDomicilio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDomicilio.Margin = new System.Windows.Forms.Padding(4);
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(203, 25);
             this.txtDomicilio.TabIndex = 6;
@@ -204,7 +204,7 @@ namespace prySampaolesiERP
             // txtDetalleDomicilio
             // 
             this.txtDetalleDomicilio.Location = new System.Drawing.Point(107, 149);
-            this.txtDetalleDomicilio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDetalleDomicilio.Margin = new System.Windows.Forms.Padding(4);
             this.txtDetalleDomicilio.Name = "txtDetalleDomicilio";
             this.txtDetalleDomicilio.Size = new System.Drawing.Size(203, 25);
             this.txtDetalleDomicilio.TabIndex = 24;
@@ -272,9 +272,9 @@ namespace prySampaolesiERP
             this.groupBox1.Controls.Add(this.txtGEO);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(31, 206);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(353, 396);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
@@ -285,7 +285,7 @@ namespace prySampaolesiERP
             this.cmbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalidad.FormattingEnabled = true;
             this.cmbLocalidad.Location = new System.Drawing.Point(107, 69);
-            this.cmbLocalidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbLocalidad.Margin = new System.Windows.Forms.Padding(4);
             this.cmbLocalidad.Name = "cmbLocalidad";
             this.cmbLocalidad.Size = new System.Drawing.Size(203, 25);
             this.cmbLocalidad.TabIndex = 13;
@@ -295,7 +295,7 @@ namespace prySampaolesiERP
             this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(107, 26);
-            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(203, 25);
             this.cmbProvincia.TabIndex = 12;
@@ -324,80 +324,80 @@ namespace prySampaolesiERP
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnAgregar);
             this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.lblIngresarMedio);
+            this.groupBox2.Controls.Add(this.txtMedioIngresado);
+            this.groupBox2.Controls.Add(this.btnQuitarMedio);
             this.groupBox2.Controls.Add(this.listView1);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.cmbMedios);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(392, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(312, 550);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Contacto";
             // 
-            // button2
+            // btnAgregar
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(180, 157);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 28);
-            this.button2.TabIndex = 27;
-            this.button2.Text = "Agregar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnAgregar.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAgregar.Location = new System.Drawing.Point(180, 157);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(113, 28);
+            this.btnAgregar.TabIndex = 27;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = false;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(93, 119);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(200, 25);
             this.textBox2.TabIndex = 30;
             // 
-            // label8
+            // lblIngresarMedio
             // 
-            this.label8.Location = new System.Drawing.Point(8, 78);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 26);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Usuario:";
+            this.lblIngresarMedio.Location = new System.Drawing.Point(8, 78);
+            this.lblIngresarMedio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIngresarMedio.Name = "lblIngresarMedio";
+            this.lblIngresarMedio.Size = new System.Drawing.Size(80, 26);
+            this.lblIngresarMedio.TabIndex = 29;
+            this.lblIngresarMedio.Text = "Usuario:";
             // 
-            // textBox1
+            // txtMedioIngresado
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 74);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(137, 25);
-            this.textBox1.TabIndex = 28;
+            this.txtMedioIngresado.Location = new System.Drawing.Point(93, 74);
+            this.txtMedioIngresado.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMedioIngresado.Name = "txtMedioIngresado";
+            this.txtMedioIngresado.Size = new System.Drawing.Size(137, 25);
+            this.txtMedioIngresado.TabIndex = 28;
             // 
-            // button1
+            // btnQuitarMedio
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(115, 513);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 28);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Quitar medio";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnQuitarMedio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnQuitarMedio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnQuitarMedio.Location = new System.Drawing.Point(115, 513);
+            this.btnQuitarMedio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnQuitarMedio.Name = "btnQuitarMedio";
+            this.btnQuitarMedio.Size = new System.Drawing.Size(119, 28);
+            this.btnQuitarMedio.TabIndex = 27;
+            this.btnQuitarMedio.Text = "Quitar medio";
+            this.btnQuitarMedio.UseVisualStyleBackColor = false;
             // 
             // listView1
             // 
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(8, 191);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(285, 315);
             this.listView1.TabIndex = 2;
@@ -414,12 +414,14 @@ namespace prySampaolesiERP
             // 
             // cmbMedios
             // 
+            this.cmbMedios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMedios.FormattingEnabled = true;
             this.cmbMedios.Location = new System.Drawing.Point(93, 25);
-            this.cmbMedios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbMedios.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMedios.Name = "cmbMedios";
             this.cmbMedios.Size = new System.Drawing.Size(137, 25);
             this.cmbMedios.TabIndex = 0;
+            this.cmbMedios.SelectedIndexChanged += new System.EventHandler(this.cmbMedios_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -440,9 +442,9 @@ namespace prySampaolesiERP
             this.groupBox3.Controls.Add(this.txtNombre);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(31, 15);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(353, 183);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
@@ -455,7 +457,7 @@ namespace prySampaolesiERP
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnGuardar.Location = new System.Drawing.Point(599, 575);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 31);
             this.btnGuardar.TabIndex = 16;
@@ -472,7 +474,7 @@ namespace prySampaolesiERP
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDatosUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personal";
@@ -542,11 +544,11 @@ namespace prySampaolesiERP
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbMedios;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnQuitarMedio;
+        private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblIngresarMedio;
+        private System.Windows.Forms.TextBox txtMedioIngresado;
         private System.Windows.Forms.Label label9;
     }
 

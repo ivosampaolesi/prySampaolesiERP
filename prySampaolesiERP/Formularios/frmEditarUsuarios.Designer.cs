@@ -1,6 +1,6 @@
 namespace prySampaolesiERP
 {
-    partial class frmEstadoUsuarios
+    partial class frmEditarUsuarios
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -22,6 +22,7 @@ namespace prySampaolesiERP
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.btnCambiarEstado = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnEditarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +94,7 @@ namespace prySampaolesiERP
             this.btnCambiarEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarEstado.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnCambiarEstado.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarEstado.Location = new System.Drawing.Point(573, 449);
+            this.btnCambiarEstado.Location = new System.Drawing.Point(382, 451);
             this.btnCambiarEstado.Name = "btnCambiarEstado";
             this.btnCambiarEstado.Size = new System.Drawing.Size(200, 38);
             this.btnCambiarEstado.TabIndex = 6;
@@ -107,17 +108,34 @@ namespace prySampaolesiERP
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVolver.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.Color.White;
-            this.btnVolver.Location = new System.Drawing.Point(466, 449);
+            this.btnVolver.Location = new System.Drawing.Point(284, 451);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(92, 38);
             this.btnVolver.TabIndex = 0;
             this.btnVolver.Text = "Atras";
             this.btnVolver.UseVisualStyleBackColor = false;
             // 
+            // btnEditarUsuario
+            // 
+            this.btnEditarUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditarUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnEditarUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarUsuario.Enabled = false;
+            this.btnEditarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEditarUsuario.ForeColor = System.Drawing.Color.White;
+            this.btnEditarUsuario.Location = new System.Drawing.Point(588, 451);
+            this.btnEditarUsuario.Name = "btnEditarUsuario";
+            this.btnEditarUsuario.Size = new System.Drawing.Size(200, 38);
+            this.btnEditarUsuario.TabIndex = 7;
+            this.btnEditarUsuario.Text = "Editar";
+            this.btnEditarUsuario.UseVisualStyleBackColor = false;
+            // 
             // frmEstadoUsuarios
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(800, 510);
+            this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnCambiarEstado);
             this.Controls.Add(this.dgvUsuarios);
@@ -140,5 +158,6 @@ namespace prySampaolesiERP
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.Button btnCambiarEstado;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnEditarUsuario;
     }
 }

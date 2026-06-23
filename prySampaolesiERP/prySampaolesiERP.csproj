@@ -89,11 +89,11 @@
     <Compile Include="Formularios\frmGestionUsuarios.Designer.cs">
       <DependentUpon>frmGestionUsuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\frmEstadoUsuarios.cs">
+    <Compile Include="Formularios\frmEditarUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\frmEstadoUsuarios.Designer.cs">
-      <DependentUpon>frmEstadoUsuarios.cs</DependentUpon>
+    <Compile Include="Formularios\frmEditarUsuarios.Designer.cs">
+      <DependentUpon>frmEditarUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +103,8 @@
     <EmbeddedResource Include="Formularios\frmAuditoria.resx">
       <DependentUpon>frmAuditoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\frmEstadoUsuarios.resx">
-      <DependentUpon>frmEstadoUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="Formularios\frmEditarUsuarios.resx">
+      <DependentUpon>frmEditarUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmGestionUsuarios.resx">
       <DependentUpon>frmGestionUsuarios.cs</DependentUpon>

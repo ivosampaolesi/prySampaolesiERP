@@ -16,9 +16,17 @@ namespace prySampaolesiERP
     {
         private clsConexion conexion;
         private string estadoOriginal;
+        private int idUsuarioSeleccionado;
 
-        public frmDatosUsuario()
+        public event EventHandler SolicitarVolver;
+
+        public frmDatosUsuario() : this(Program.UsuarioID)
         {
+        }
+
+        public frmDatosUsuario(int idUsuario)
+        {
+            this.idUsuarioSeleccionado = idUsuario;
             InitializeComponent();
             this.Load += FrmEditarUsuario_Load;
             this.FormClosing += FrmDatosUsuario_FormClosing;
@@ -26,15 +34,47 @@ namespace prySampaolesiERP
             btnAgregarDomicilio.Click += btnAgregarDomicilio_Click;
             btnQuitarDomicilio.Click += btnQuitarDomicilio_Click;
             btnGuardar.Click += btnGuardar_Click;
-            button2.Click += button2_Click;
-            button1.Click += button1_Click;
+            btnAgregar.Click += btnAgregar_Click;
+            btnQuitarMedio.Click += btnQuitarMedio_Click;
             txtDni.KeyPress += TxtDni_KeyPress;
+            txtMedioIngresado.KeyPress += TxtMedioIngresado_KeyPress;
+
+            InicializarBotonVolver();
+        }
+
+        private void InicializarBotonVolver()
+        {
+            if (this.idUsuarioSeleccionado != Program.UsuarioID)
+            {
+                Button btnVolver = new Button();
+                btnVolver.BackColor = Color.FromArgb(30, 41, 59);
+                btnVolver.FlatStyle = FlatStyle.Flat;
+                btnVolver.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+                btnVolver.ForeColor = Color.White;
+                btnVolver.Location = new Point(480, 575);
+                btnVolver.Size = new Size(105, 31);
+                btnVolver.Text = "Atrás";
+                btnVolver.Cursor = Cursors.Hand;
+                btnVolver.Click += (s, e) => {
+                    SolicitarVolver?.Invoke(this, EventArgs.Empty);
+                };
+                this.Controls.Add(btnVolver);
+                btnVolver.BringToFront();
+            }
         }
 
         private void TxtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 e.Handled = true;
+        }
+
+        private void TxtMedioIngresado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cmbMedios.Text == "NumeroCelular")
+            {
+                TxtDni_KeyPress(sender, e);
+            }
         }
 
         private void FrmEditarUsuario_Load(object sender, EventArgs e)
@@ -84,7 +124,7 @@ namespace prySampaolesiERP
         {
             DataTable dt = conexion.EjecutarConsulta(
                 "SELECT COUNT(*) AS Cantidad FROM DatosPersonales WHERE IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID } });
+                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado } });
 
             int cantidad = dt != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["Cantidad"]) : 0;
             if (cantidad > 0)
@@ -94,7 +134,7 @@ namespace prySampaolesiERP
                 "INSERT INTO DatosPersonales (IdUsuario, Activo) VALUES (?, ?)",
                 new OleDbParameter[]
                 {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID },
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
                     new OleDbParameter("@activo", OleDbType.Boolean) { Value = true }
                 });
         }
@@ -138,7 +178,7 @@ namespace prySampaolesiERP
                 "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
                 "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
                 "WHERE Usuario.IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", Program.UsuarioID) });
+                new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) });
 
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -180,7 +220,7 @@ namespace prySampaolesiERP
                 "FROM MediosContacto INNER JOIN Medios ON MediosContacto.IdMedio = Medios.IdMedio " +
                 "WHERE MediosContacto.IdUsuario = ? " +
                 "ORDER BY Medios.NombreMedio",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", Program.UsuarioID) });
+                new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) });
 
             if (dt != null)
             {
@@ -195,7 +235,7 @@ namespace prySampaolesiERP
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (cmbMedios.SelectedValue == null || cmbMedios.SelectedIndex < 0)
             {
@@ -203,7 +243,7 @@ namespace prySampaolesiERP
                 return;
             }
 
-            string usuarioMedio = textBox1.Text.Trim();
+            string usuarioMedio = txtMedioIngresado.Text.Trim();
             if (usuarioMedio == "")
             {
                 MessageBox.Show("Ingrese el usuario, teléfono o mail.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -218,7 +258,7 @@ namespace prySampaolesiERP
                 if ((int)item.Tag == idMedio && item.SubItems[1].Text.Equals(usuarioMedio, StringComparison.OrdinalIgnoreCase))
                 {
                     item.SubItems[2].Text = detalles;
-                    textBox1.Clear();
+                    txtMedioIngresado.Clear();
                     textBox2.Clear();
                     cmbMedios.SelectedIndex = -1;
                     return;
@@ -226,7 +266,7 @@ namespace prySampaolesiERP
             }
 
             AgregarMedioALista(idMedio, cmbMedios.Text, usuarioMedio, detalles);
-            textBox1.Clear();
+            txtMedioIngresado.Clear();
             textBox2.Clear();
             cmbMedios.SelectedIndex = -1;
         }
@@ -240,7 +280,7 @@ namespace prySampaolesiERP
             listView1.Items.Add(item);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnQuitarMedio_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in listView1.SelectedItems)
             {
@@ -282,7 +322,7 @@ namespace prySampaolesiERP
                     new OleDbParameter("@nombre", OleDbType.VarWChar) { Value = txtNombre.Text.Trim() },
                     new OleDbParameter("@apellido", OleDbType.VarWChar) { Value = txtApellido.Text.Trim() },
                     new OleDbParameter("@dni", OleDbType.Integer) { Value = dni },
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado }
                 });
 
             if (!usuarioActualizado)
@@ -290,7 +330,7 @@ namespace prySampaolesiERP
 
             DataTable dt = conexion.EjecutarConsulta(
                 "SELECT COUNT(*) AS Cantidad FROM DatosPersonales WHERE IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID } });
+                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado } });
 
             int cantidad = dt != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["Cantidad"]) : 0;
 
@@ -307,7 +347,7 @@ namespace prySampaolesiERP
                         new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                         new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
                         new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() },
-                        new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
+                        new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado }
                     });
             }
 
@@ -315,7 +355,7 @@ namespace prySampaolesiERP
                 "INSERT INTO DatosPersonales (IdUsuario, Localidad, Provincia, Activo, Geo) VALUES (?, ?, ?, ?, ?)",
                 new OleDbParameter[]
                 {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID },
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
                     new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
                     new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
                     new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
@@ -328,7 +368,7 @@ namespace prySampaolesiERP
             lstDomicilios.Items.Clear();
             DataTable dt = conexion.EjecutarConsulta(
                 "SELECT Domicilio, Detalle FROM Domicilios WHERE IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", Program.UsuarioID) });
+                new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) });
 
             if (dt != null)
             {
@@ -376,14 +416,14 @@ namespace prySampaolesiERP
 
         private bool GuardarDomiciliosUsuario()
         {
-            if (!conexion.EjecutarComando("DELETE FROM Domicilios WHERE IdUsuario = ?", new OleDbParameter[] { new OleDbParameter("@idUsuario", Program.UsuarioID) }))
+            if (!conexion.EjecutarComando("DELETE FROM Domicilios WHERE IdUsuario = ?", new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) }))
                 return false;
 
             foreach (ListViewItem item in lstDomicilios.Items)
             {
                 OleDbParameter[] parametrosInsertar = new OleDbParameter[]
                 {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID },
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
                     new OleDbParameter("@domicilio", OleDbType.VarWChar) { Value = item.Text },
                     new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = item.SubItems.Count > 1 ? item.SubItems[1].Text : "" }
                 };
@@ -398,14 +438,14 @@ namespace prySampaolesiERP
 
         private bool GuardarMediosUsuario()
         {
-            if (!conexion.EjecutarComando("DELETE FROM MediosContacto WHERE IdUsuario = ?", new OleDbParameter[] { new OleDbParameter("@idUsuario", Program.UsuarioID) }))
+            if (!conexion.EjecutarComando("DELETE FROM MediosContacto WHERE IdUsuario = ?", new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) }))
                 return false;
 
             foreach (ListViewItem item in listView1.Items)
             {
                 OleDbParameter[] parametrosInsertar = new OleDbParameter[]
                 {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID },
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
                     new OleDbParameter("@idMedio", OleDbType.Integer) { Value = (int)item.Tag },
                     new OleDbParameter("@usuarioMedio", OleDbType.VarWChar) { Value = item.SubItems[1].Text },
                     new OleDbParameter("@detalles", OleDbType.VarWChar) { Value = item.SubItems[2].Text }
@@ -439,6 +479,19 @@ namespace prySampaolesiERP
         {
             if (conexion != null)
                 conexion.Desconectar();
+        }
+
+        private void cmbMedios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbMedios.Text == "Mail")
+            {
+                lblIngresarMedio.Text = "Mail:";
+            }
+            else if (cmbMedios.Text == "NumeroCelular")
+            {
+                lblIngresarMedio.Text = "Numero:";
+            }
+            else { lblIngresarMedio.Text = "Usuario:";}
         }
     }
 }

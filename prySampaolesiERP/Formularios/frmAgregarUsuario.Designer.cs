@@ -37,7 +37,7 @@ namespace prySampaolesiERP
             this.lblDetalleDomicilio = new System.Windows.Forms.Label();
             this.txtDomicilio = new System.Windows.Forms.TextBox();
             this.lblDomicilio = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNumeroCelu = new System.Windows.Forms.TextBox();
             this.lbl = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtGEO = new System.Windows.Forms.TextBox();
@@ -257,12 +257,12 @@ namespace prySampaolesiERP
             this.lblDomicilio.TabIndex = 34;
             this.lblDomicilio.Text = "Domicilio:";
             // 
-            // textBox1
+            // txtNumeroCelu
             // 
-            this.textBox1.Location = new System.Drawing.Point(140, 295);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 22);
-            this.textBox1.TabIndex = 41;
+            this.txtNumeroCelu.Location = new System.Drawing.Point(140, 295);
+            this.txtNumeroCelu.Name = "txtNumeroCelu";
+            this.txtNumeroCelu.Size = new System.Drawing.Size(203, 22);
+            this.txtNumeroCelu.TabIndex = 41;
             // 
             // lbl
             // 
@@ -299,7 +299,7 @@ namespace prySampaolesiERP
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtGEO);
             this.Controls.Add(this.lbl);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNumeroCelu);
             this.Controls.Add(this.cmbLocalidad2);
             this.Controls.Add(this.cmbProvincia2);
             this.Controls.Add(this.label6);
@@ -351,7 +351,7 @@ namespace prySampaolesiERP
         private System.Windows.Forms.Label lblDetalleDomicilio;
         private System.Windows.Forms.TextBox txtDomicilio;
         private System.Windows.Forms.Label lblDomicilio;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNumeroCelu;
         private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtGEO;

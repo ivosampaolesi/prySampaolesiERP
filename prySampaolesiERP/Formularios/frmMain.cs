@@ -168,14 +168,6 @@ namespace prySampaolesiERP
 
            
 
-            if (pnlAviso != null)
-
-            {
-
-                pnlAviso.Visible = false;
-
-            }
-
 
 
             if (activeForm != null)
@@ -250,14 +242,6 @@ namespace prySampaolesiERP
 
             CentrarFormularioHijo();
 
-            if (pnlAviso != null)
-
-            {
-
-                pnlAviso.Location = new Point(pnlContent.Width - pnlAviso.Width - 20, pnlContent.Height - pnlAviso.Height - 20);
-
-            }
-
         }
 
 
@@ -303,110 +287,6 @@ namespace prySampaolesiERP
             }
 
             lblTituloSeccion.Text = "Inicio";
-
-            ActualizarAvisoPendientes();
-
-        }
-
-
-
-        private bool TieneDatosPersonalesIncompletos()
-
-        {
-
-            OleDbParameter[] parametrosDatos = new OleDbParameter[]
-
-            {
-
-                new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
-
-            };
-
-
-
-            DataTable dt = conexion.EjecutarConsulta(
-
-                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, " +
-
-                "DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
-
-                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
-
-                "WHERE Usuario.IdUsuario = @idUsuario",
-
-                parametrosDatos);
-
-
-
-            if (dt == null || dt.Rows.Count == 0)
-
-                return true;
-
-
-
-            DataRow fila = dt.Rows[0];
-
-            string[] columnasObligatorias = new string[]
-
-            {
-
-                "Nombre", "Apellido", "DNI", "Localidad", "Provincia", "Geo"
-
-            };
-
-
-
-            foreach (string columna in columnasObligatorias)
-
-            {
-
-                if (fila[columna] == DBNull.Value || string.IsNullOrWhiteSpace(fila[columna].ToString()))
-
-                    return true;
-
-            }
-
-
-
-            DataTable dtMedios = conexion.EjecutarConsulta(
-
-                "SELECT COUNT(*) AS Cantidad FROM MediosContacto WHERE IdUsuario = ?",
-
-                new OleDbParameter[]
-
-                {
-
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
-
-                });
-
-
-
-            int cantidadMedios = dtMedios != null && dtMedios.Rows.Count > 0 ? Convert.ToInt32(dtMedios.Rows[0]["Cantidad"]) : 0;
-
-            if (cantidadMedios == 0)
-
-                return true;
-
-
-
-            DataTable dtDomicilios = conexion.EjecutarConsulta(
-
-                "SELECT COUNT(*) AS Cantidad FROM Domicilios WHERE IdUsuario = ?",
-
-                new OleDbParameter[]
-
-                {
-
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
-
-                });
-
-
-
-            int cantidadDomicilios = dtDomicilios != null && dtDomicilios.Rows.Count > 0 ? Convert.ToInt32(dtDomicilios.Rows[0]["Cantidad"]) : 0;
-
-            return cantidadDomicilios == 0;
 
         }
 
@@ -476,12 +356,28 @@ namespace prySampaolesiERP
 
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Boton Estado de Usuarios");
 
-            frmEstadoUsuarios frm = new frmEstadoUsuarios();
+            frmEditarUsuarios frm = new frmEditarUsuarios();
 
             frm.SolicitarVolverGestionUsuarios += frmEstadoUsuarios_SolicitarVolverGestionUsuarios;
+            frm.SolicitarEditarUsuario += frmEditarUsuarios_SolicitarEditarUsuario;
 
             AbrirFormularioHijo(frm, "Estado de Usuarios");
 
+        }
+
+        private void frmEditarUsuarios_SolicitarEditarUsuario(object sender, int idUsuario)
+        {
+            frmDatosUsuario frm = new frmDatosUsuario(idUsuario);
+            frm.SolicitarVolver += frmDatosUsuario_SolicitarVolver;
+            AbrirFormularioHijo(frm, "Datos de Usuario");
+        }
+
+        private void frmDatosUsuario_SolicitarVolver(object sender, EventArgs e)
+        {
+            frmEditarUsuarios frm = new frmEditarUsuarios();
+            frm.SolicitarVolverGestionUsuarios += frmEstadoUsuarios_SolicitarVolverGestionUsuarios;
+            frm.SolicitarEditarUsuario += frmEditarUsuarios_SolicitarEditarUsuario;
+            AbrirFormularioHijo(frm, "Estado de Usuarios");
         }
 
 
@@ -506,11 +402,11 @@ namespace prySampaolesiERP
 
 
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
 
         {
 
-            this.Close();
+            this.DialogResult = DialogResult.OK;
 
         }
 
@@ -554,214 +450,7 @@ namespace prySampaolesiERP
 
 
 
-        private void lblCerrarAviso_Click(object sender, EventArgs e)
 
-        {
-
-            pnlAviso.Visible = false;
-
-        }
-
-
-
-        private void lblCerrarAviso_MouseEnter(object sender, EventArgs e)
-
-        {
-
-            lblCerrarAviso.ForeColor = Color.FromArgb(239, 68, 68);
-
-        }
-
-
-
-        private void lblCerrarAviso_MouseLeave(object sender, EventArgs e)
-
-        {
-
-            lblCerrarAviso.ForeColor = Color.FromArgb(120, 113, 108);
-
-        }
-
-
-
-        private void ActualizarAvisoPendientes()
-
-        {
-
-            if (pnlAviso == null) return;
-
-
-
-            var faltantes = ObtenerCamposFaltantes();
-
-            if (faltantes.Count > 0)
-
-            {
-
-                string mensaje = "Detectamos que aún te falta completar:\n\n";
-
-                foreach (var campo in faltantes)
-
-                {
-
-                    mensaje += $"  • {campo}\n";
-
-                }
-
-                mensaje += "\nPodés completarlos en \"Datos Personales\".";
-
-                lblAvisoDetalle.Text = mensaje;
-
-                pnlAviso.Visible = true;
-
-                pnlAviso.BringToFront();
-
-            }
-
-            else
-
-            {
-
-                pnlAviso.Visible = false;
-
-            }
-
-        }
-
-
-
-        private System.Collections.Generic.List<string> ObtenerCamposFaltantes()
-
-        {
-
-            var faltantes = new System.Collections.Generic.List<string>();
-
-
-
-            OleDbParameter[] parametrosDatos = new OleDbParameter[]
-
-            {
-
-                new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
-
-            };
-
-
-
-            DataTable dt = conexion.EjecutarConsulta(
-
-                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, " +
-
-                "DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
-
-                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
-
-                "WHERE Usuario.IdUsuario = @idUsuario",
-
-                parametrosDatos);
-
-
-
-            if (dt != null && dt.Rows.Count > 0)
-
-            {
-
-                DataRow fila = dt.Rows[0];
-
-
-
-                var campos = new System.Collections.Generic.Dictionary<string, string>
-
-                {
-
-                    { "Nombre", "Nombre" },
-
-                    { "Apellido", "Apellido" },
-
-                    { "DNI", "DNI" },
-
-
-                    { "Localidad", "Localidad" },
-
-                    { "Provincia", "Provincia" },
-
-                    { "Geo", "Geolocalización" }
-
-                };
-
-
-
-                foreach (var campo in campos)
-
-                {
-
-                    if (fila[campo.Key] == DBNull.Value || string.IsNullOrWhiteSpace(fila[campo.Key].ToString()))
-
-                    {
-
-                        faltantes.Add(campo.Value);
-
-                    }
-
-                }
-
-            }
-
-            else
-
-            {
-
-                faltantes.Add("Datos Personales");
-
-            }
-
-
-
-            DataTable dtMedios = conexion.EjecutarConsulta(
-
-                "SELECT COUNT(*) AS Cantidad FROM MediosContacto WHERE IdUsuario = ?",
-
-                new OleDbParameter[]
-
-                {
-
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = Program.UsuarioID }
-
-                });
-
-
-
-            int cantidadMedios = dtMedios != null && dtMedios.Rows.Count > 0 ? Convert.ToInt32(dtMedios.Rows[0]["Cantidad"]) : 0;
-
-            if (cantidadMedios == 0)
-
-            {
-
-                faltantes.Add("Medios de Contacto");
-
-            }
-
-
-
-            return faltantes;
-
-        }
-
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-
-        {
-
-            if (pnlAviso != null)
-
-            {
-
-                pnlAviso.Visible = false;
-
-            }
-
-        }
 
     }
 
