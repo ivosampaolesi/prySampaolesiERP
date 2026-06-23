@@ -20,6 +20,8 @@ namespace prySampaolesiERP
 
         
 
+        public event EventHandler SolicitarVolver;
+
         public frmDatosUsuario() : this(Program.UsuarioID)
         {
         }
@@ -38,9 +40,10 @@ namespace prySampaolesiERP
             btnQuitarMedio.Click += btnQuitarMedio_Click;
             txtDni.KeyPress += TxtDni_KeyPress;
             txtMedioIngresado.KeyPress += TxtMedioIngresado_KeyPress;
-
-            
+            btnAtras.Click += btnAtras_Click;
         }
+
+
 
         
 
@@ -443,6 +446,11 @@ namespace prySampaolesiERP
         public void MostrarAtras(bool visible) 
         {
             btnAtras.Visible = visible;
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            SolicitarVolver?.Invoke(this, EventArgs.Empty);
         }
 
         private string ObtenerEstadoActual()

@@ -368,7 +368,7 @@ namespace prySampaolesiERP
         private void frmEditarUsuarios_SolicitarEditarUsuario(object sender, int idUsuario)
         {
             frmDatosUsuario frm = new frmDatosUsuario(idUsuario);
-           
+            frm.SolicitarVolver += frmDatosUsuario_SolicitarVolver;
             AbrirFormularioHijo(frm, "Datos de Usuario");
         }
 
