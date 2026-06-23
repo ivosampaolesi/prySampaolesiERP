@@ -18,7 +18,7 @@ namespace prySampaolesiERP
         private string estadoOriginal;
         private int idUsuarioSeleccionado;
 
-        public event EventHandler SolicitarVolver;
+        
 
         public frmDatosUsuario() : this(Program.UsuarioID)
         {
@@ -39,29 +39,10 @@ namespace prySampaolesiERP
             txtDni.KeyPress += TxtDni_KeyPress;
             txtMedioIngresado.KeyPress += TxtMedioIngresado_KeyPress;
 
-            InicializarBotonVolver();
+            
         }
 
-        private void InicializarBotonVolver()
-        {
-            if (this.idUsuarioSeleccionado != Program.UsuarioID)
-            {
-                Button btnVolver = new Button();
-                btnVolver.BackColor = Color.FromArgb(30, 41, 59);
-                btnVolver.FlatStyle = FlatStyle.Flat;
-                btnVolver.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-                btnVolver.ForeColor = Color.White;
-                btnVolver.Location = new Point(480, 575);
-                btnVolver.Size = new Size(105, 31);
-                btnVolver.Text = "Atrás";
-                btnVolver.Cursor = Cursors.Hand;
-                btnVolver.Click += (s, e) => {
-                    SolicitarVolver?.Invoke(this, EventArgs.Empty);
-                };
-                this.Controls.Add(btnVolver);
-                btnVolver.BringToFront();
-            }
-        }
+        
 
         private void TxtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -457,6 +438,11 @@ namespace prySampaolesiERP
                 }
             }
             return true;
+        }
+
+        public void MostrarAtras(bool visible) 
+        {
+            btnAtras.Visible = visible;
         }
 
         private string ObtenerEstadoActual()

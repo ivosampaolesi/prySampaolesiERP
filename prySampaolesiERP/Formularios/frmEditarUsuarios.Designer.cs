@@ -70,6 +70,8 @@ namespace prySampaolesiERP
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
+            this.dgvUsuarios.AllowUserToResizeColumns = false;
+            this.dgvUsuarios.AllowUserToResizeRows = false;
             this.dgvUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -130,8 +132,9 @@ namespace prySampaolesiERP
             this.btnEditarUsuario.TabIndex = 7;
             this.btnEditarUsuario.Text = "Editar";
             this.btnEditarUsuario.UseVisualStyleBackColor = false;
+           
             // 
-            // frmEstadoUsuarios
+            // frmEditarUsuarios
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(800, 510);
@@ -144,7 +147,7 @@ namespace prySampaolesiERP
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.lblBuscar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmEstadoUsuarios";
+            this.Name = "frmEditarUsuarios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

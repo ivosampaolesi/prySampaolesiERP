@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
 
+
 namespace prySampaolesiERP
 {
     public partial class frmEditarUsuarios : Form
@@ -134,6 +135,9 @@ namespace prySampaolesiERP
 
             int idUsuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdUsuario"].Value);
             SolicitarEditarUsuario?.Invoke(this, idUsuario);
+
+            frmDatosUsuario m = (frmDatosUsuario)Application.OpenForms["frmDatosUsuario"];
+            m.MostrarAtras(true); 
         }
 
         private void btnCambiarEstado_Click(object sender, EventArgs e)
@@ -209,5 +213,7 @@ namespace prySampaolesiERP
             if (conexion != null)
                 conexion.Desconectar();
         }
+
+
     }
 }
