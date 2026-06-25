@@ -218,6 +218,13 @@ namespace prySampaolesiERP
             }
 
             string detalles = textBox2.Text.Trim();
+            if (detalles == "")
+            {
+                ValidadorUI.PintarError(textBox2);
+                MessageBox.Show("Ingrese un detalle.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int idMedio = Convert.ToInt32(cmbMedios.SelectedValue);
 
             foreach (ListViewItem item in listView1.Items)
@@ -265,6 +272,11 @@ namespace prySampaolesiERP
             if (lstDomicilios.Items.Count == 0)
             {
                 MessageBox.Show("Debe ingresar al menos un domicilio.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (listView1.Items.Count == 0)
+            {
+                MessageBox.Show("Debe ingresar al menos un medio de contacto.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (GuardarDatosUsuario() && GuardarMediosUsuario() && GuardarDomiciliosUsuario())
@@ -317,14 +329,34 @@ namespace prySampaolesiERP
 
         private void btnAgregarDomicilio_Click(object sender, EventArgs e)
         {
-            string domicilio = txtDomicilio.Text.Trim();
-            if (domicilio == "")
+            bool hasEmpty = false;
+            TextBox[] checkEmptyTxt = { txtDomicilio, txtDetalleDomicilio, txtGEO };
+            foreach (var txt in checkEmptyTxt)
             {
-                ValidadorUI.PintarError(txtDomicilio);
-                MessageBox.Show("Ingrese un domicilio.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (string.IsNullOrWhiteSpace(txt.Text))
+                {
+                    ValidadorUI.PintarError(txt);
+                    hasEmpty = true;
+                }
+            }
+
+            ComboBox[] checkEmptyCmb = { cmbProvincia, cmbLocalidad };
+            foreach (var cmb in checkEmptyCmb)
+            {
+                if (cmb.SelectedIndex < 0 || string.IsNullOrWhiteSpace(cmb.Text))
+                {
+                    ValidadorUI.PintarError(cmb);
+                    hasEmpty = true;
+                }
+            }
+
+            if (hasEmpty)
+            {
+                MessageBox.Show("Complete todos los campos del domicilio.", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            string domicilio = txtDomicilio.Text.Trim();
             foreach (ListViewItem item in lstDomicilios.Items)
             {
                 if (item.Text.Equals(domicilio, StringComparison.OrdinalIgnoreCase))
@@ -336,12 +368,16 @@ namespace prySampaolesiERP
 
             ListViewItem nuevoItem = new ListViewItem(domicilio);
             nuevoItem.SubItems.Add(txtDetalleDomicilio.Text.Trim());
-            nuevoItem.SubItems.Add(cmbLocalidad.SelectedIndex >= 0 ? cmbLocalidad.Text : "");
-            nuevoItem.SubItems.Add(cmbProvincia.SelectedIndex >= 0 ? cmbProvincia.Text : "");
+            nuevoItem.SubItems.Add(cmbLocalidad.Text);
+            nuevoItem.SubItems.Add(cmbProvincia.Text);
             nuevoItem.SubItems.Add(txtGEO.Text.Trim());
             lstDomicilios.Items.Add(nuevoItem);
+            
             txtDomicilio.Clear();
             txtDetalleDomicilio.Clear();
+            cmbProvincia.SelectedIndex = -1;
+            cmbLocalidad.SelectedIndex = -1;
+            txtGEO.Clear();
         }
 
         private void btnQuitarDomicilio_Click(object sender, EventArgs e)
