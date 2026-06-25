@@ -157,7 +157,7 @@ namespace prySampaolesiERP
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 367);
+            this.label4.Location = new System.Drawing.Point(30, 191);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 17);
@@ -166,7 +166,7 @@ namespace prySampaolesiERP
             // 
             // txtGEO
             // 
-            this.txtGEO.Location = new System.Drawing.Point(107, 363);
+            this.txtGEO.Location = new System.Drawing.Point(107, 187);
             this.txtGEO.Margin = new System.Windows.Forms.Padding(4);
             this.txtGEO.Name = "txtGEO";
             this.txtGEO.Size = new System.Drawing.Size(203, 25);
@@ -215,7 +215,7 @@ namespace prySampaolesiERP
             this.btnAgregarDomicilio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnAgregarDomicilio.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarDomicilio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAgregarDomicilio.Location = new System.Drawing.Point(186, 180);
+            this.btnAgregarDomicilio.Location = new System.Drawing.Point(186, 218);
             this.btnAgregarDomicilio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
             this.btnAgregarDomicilio.Size = new System.Drawing.Size(160, 28);
@@ -227,7 +227,7 @@ namespace prySampaolesiERP
             // 
             this.btnQuitarDomicilio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.btnQuitarDomicilio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnQuitarDomicilio.Location = new System.Drawing.Point(186, 322);
+            this.btnQuitarDomicilio.Location = new System.Drawing.Point(186, 360);
             this.btnQuitarDomicilio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuitarDomicilio.Name = "btnQuitarDomicilio";
             this.btnQuitarDomicilio.Size = new System.Drawing.Size(160, 28);
@@ -242,7 +242,7 @@ namespace prySampaolesiERP
             this.lstDomicilios.FullRowSelect = true;
             this.lstDomicilios.GridLines = true;
             this.lstDomicilios.HideSelection = false;
-            this.lstDomicilios.Location = new System.Drawing.Point(13, 212);
+            this.lstDomicilios.Location = new System.Drawing.Point(13, 250);
             this.lstDomicilios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstDomicilios.MultiSelect = false;
             this.lstDomicilios.Name = "lstDomicilios";
@@ -258,11 +258,12 @@ namespace prySampaolesiERP
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cmbLocalidad);
+            this.groupBox1.Controls.Add(this.txtGEO);
             this.groupBox1.Controls.Add(this.cmbProvincia);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnQuitarDomicilio);
             this.groupBox1.Controls.Add(this.lstDomicilios);
             this.groupBox1.Controls.Add(this.btnAgregarDomicilio);
@@ -270,7 +271,6 @@ namespace prySampaolesiERP
             this.groupBox1.Controls.Add(this.lblDetalleDomicilio);
             this.groupBox1.Controls.Add(this.txtDomicilio);
             this.groupBox1.Controls.Add(this.lblDomicilio);
-            this.groupBox1.Controls.Add(this.txtGEO);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(31, 206);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
