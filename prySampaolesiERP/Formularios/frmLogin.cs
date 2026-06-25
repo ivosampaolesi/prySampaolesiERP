@@ -61,8 +61,8 @@ namespace prySampaolesiERP
             };
 
             DataTable dt = conexion.EjecutarConsulta(
-                "SELECT Usuario.IdUsuario, Usuario.Mail, DatosPersonales.Activo " +
-                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
+                "SELECT Usuario.IdUsuario, Usuario.Mail, Usuario.Activo " +
+                "FROM Usuario " +
                 "WHERE Usuario.DNI = @dni AND Usuario.Contrasenia = @pass",
                 parametros);
 

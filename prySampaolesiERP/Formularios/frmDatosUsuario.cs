@@ -78,10 +78,12 @@ namespace prySampaolesiERP
                 listView1.Columns.Add("Detalles", 120);
 
                 lstDomicilios.Columns.Add("Detalle", 100);
+                lstDomicilios.Columns.Add("Localidad", 100);
+                lstDomicilios.Columns.Add("Provincia", 100);
+                lstDomicilios.Columns.Add("GEO", 80);
 
                 CargarMediosDisponibles();
 
-                GarantizarDatosPersonalesUsuario();
                 CargarDatosUsuario();
                 CargarMediosUsuario();
                 CargarDomiciliosUsuario();
@@ -105,24 +107,7 @@ namespace prySampaolesiERP
             }
         }
 
-        private bool GarantizarDatosPersonalesUsuario()
-        {
-            DataTable dt = conexion.EjecutarConsulta(
-                "SELECT COUNT(*) AS Cantidad FROM DatosPersonales WHERE IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado } });
 
-            int cantidad = dt != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["Cantidad"]) : 0;
-            if (cantidad > 0)
-                return true;
-
-            return conexion.EjecutarComando(
-                "INSERT INTO DatosPersonales (IdUsuario, Activo) VALUES (?, ?)",
-                new OleDbParameter[]
-                {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
-                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = true }
-                });
-        }
 
         private void CargarProvincias()
         {
@@ -160,8 +145,8 @@ namespace prySampaolesiERP
         private void CargarDatosUsuario()
         {
             DataTable dt = conexion.EjecutarConsulta(
-                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI, DatosPersonales.Localidad, DatosPersonales.Provincia, DatosPersonales.Geo " +
-                "FROM Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario " +
+                "SELECT Usuario.Nombre, Usuario.Apellido, Usuario.DNI " +
+                "FROM Usuario " +
                 "WHERE Usuario.IdUsuario = ?",
                 new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) });
 
@@ -171,10 +156,6 @@ namespace prySampaolesiERP
                 txtNombre.Text = ObtenerTexto(fila, "Nombre");
                 txtApellido.Text = ObtenerTexto(fila, "Apellido");
                 txtDni.Text = ObtenerTexto(fila, "DNI");
-                txtGEO.Text = ObtenerTexto(fila, "Geo");
-
-                SeleccionarComboPorTexto(cmbProvincia, ObtenerTexto(fila, "Provincia"));
-                SeleccionarComboPorTexto(cmbLocalidad, ObtenerTexto(fila, "Localidad"));
             }
         }
 
@@ -302,7 +283,7 @@ namespace prySampaolesiERP
                 return false;
             }
 
-            bool usuarioActualizado = conexion.EjecutarComando(
+            return conexion.EjecutarComando(
                 "UPDATE Usuario SET Nombre = ?, Apellido = ?, DNI = ? WHERE IdUsuario = ?",
                 new OleDbParameter[]
                 {
@@ -311,50 +292,13 @@ namespace prySampaolesiERP
                     new OleDbParameter("@dni", OleDbType.Integer) { Value = dni },
                     new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado }
                 });
-
-            if (!usuarioActualizado)
-                return false;
-
-            DataTable dt = conexion.EjecutarConsulta(
-                "SELECT COUNT(*) AS Cantidad FROM DatosPersonales WHERE IdUsuario = ?",
-                new OleDbParameter[] { new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado } });
-
-            int cantidad = dt != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["Cantidad"]) : 0;
-
-            string provincia = cmbProvincia.SelectedIndex >= 0 ? cmbProvincia.Text : "";
-            string localidad = cmbLocalidad.SelectedIndex >= 0 ? cmbLocalidad.Text : "";
-
-            if (cantidad > 0)
-            {
-                return conexion.EjecutarComando(
-                    "UPDATE DatosPersonales SET Localidad = ?, Provincia = ?, Activo = ?, Geo = ? WHERE IdUsuario = ?",
-                    new OleDbParameter[]
-                    {
-                        new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
-                        new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
-                        new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
-                        new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() },
-                        new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado }
-                    });
-            }
-
-            return conexion.EjecutarComando(
-                "INSERT INTO DatosPersonales (IdUsuario, Localidad, Provincia, Activo, Geo) VALUES (?, ?, ?, ?, ?)",
-                new OleDbParameter[]
-                {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
-                    new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
-                    new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
-                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = true },
-                    new OleDbParameter("@geo", OleDbType.VarWChar) { Value = txtGEO.Text.Trim() }
-                });
         }
 
         private void CargarDomiciliosUsuario()
         {
             lstDomicilios.Items.Clear();
             DataTable dt = conexion.EjecutarConsulta(
-                "SELECT Domicilio, Detalle FROM Domicilios WHERE IdUsuario = ?",
+                "SELECT Domicilio, Detalle, Localidad, Provincia, Geo FROM Domicilios WHERE IdUsuario = ?",
                 new OleDbParameter[] { new OleDbParameter("@idUsuario", this.idUsuarioSeleccionado) });
 
             if (dt != null)
@@ -363,6 +307,9 @@ namespace prySampaolesiERP
                 {
                     ListViewItem item = new ListViewItem(fila["Domicilio"].ToString());
                     item.SubItems.Add(fila["Detalle"] != DBNull.Value ? fila["Detalle"].ToString() : "");
+                    item.SubItems.Add(fila["Localidad"] != DBNull.Value ? fila["Localidad"].ToString() : "");
+                    item.SubItems.Add(fila["Provincia"] != DBNull.Value ? fila["Provincia"].ToString() : "");
+                    item.SubItems.Add(fila["Geo"] != DBNull.Value ? fila["Geo"].ToString() : "");
                     lstDomicilios.Items.Add(item);
                 }
             }
@@ -389,6 +336,9 @@ namespace prySampaolesiERP
 
             ListViewItem nuevoItem = new ListViewItem(domicilio);
             nuevoItem.SubItems.Add(txtDetalleDomicilio.Text.Trim());
+            nuevoItem.SubItems.Add(cmbLocalidad.SelectedIndex >= 0 ? cmbLocalidad.Text : "");
+            nuevoItem.SubItems.Add(cmbProvincia.SelectedIndex >= 0 ? cmbProvincia.Text : "");
+            nuevoItem.SubItems.Add(txtGEO.Text.Trim());
             lstDomicilios.Items.Add(nuevoItem);
             txtDomicilio.Clear();
             txtDetalleDomicilio.Clear();
@@ -413,10 +363,13 @@ namespace prySampaolesiERP
                 {
                     new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = this.idUsuarioSeleccionado },
                     new OleDbParameter("@domicilio", OleDbType.VarWChar) { Value = item.Text },
-                    new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = item.SubItems.Count > 1 ? item.SubItems[1].Text : "" }
+                    new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = item.SubItems.Count > 1 ? item.SubItems[1].Text : "" },
+                    new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = item.SubItems.Count > 2 ? item.SubItems[2].Text : "" },
+                    new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = item.SubItems.Count > 3 ? item.SubItems[3].Text : "" },
+                    new OleDbParameter("@geo", OleDbType.VarWChar) { Value = item.SubItems.Count > 4 ? item.SubItems[4].Text : "" }
                 };
 
-                if (!conexion.EjecutarComando("INSERT INTO Domicilios (IdUsuario, Domicilio, Detalle) VALUES (?, ?, ?)", parametrosInsertar))
+                if (!conexion.EjecutarComando("INSERT INTO Domicilios (IdUsuario, Domicilio, Detalle, Localidad, Provincia, Geo) VALUES (?, ?, ?, ?, ?, ?)", parametrosInsertar))
                 {
                     return false;
                 }
@@ -464,7 +417,11 @@ namespace prySampaolesiERP
             valores.Append(txtApellido.Text).Append("|");
             valores.Append(txtDni.Text).Append("|");
             foreach (ListViewItem domItem in lstDomicilios.Items)
-                valores.Append(domItem.Text).Append(":").Append(domItem.SubItems.Count > 1 ? domItem.SubItems[1].Text : "").Append("|");
+            {
+                for (int i = 0; i < domItem.SubItems.Count; i++)
+                    valores.Append(domItem.SubItems[i].Text).Append(":");
+                valores.Append("|");
+            }
             valores.Append(txtGEO.Text).Append("|");
             valores.Append(cmbProvincia.Text).Append("|");
             valores.Append(cmbLocalidad.Text).Append("|");

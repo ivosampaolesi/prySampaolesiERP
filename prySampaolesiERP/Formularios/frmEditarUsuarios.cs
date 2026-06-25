@@ -49,10 +49,9 @@ namespace prySampaolesiERP
             string consulta =
                 "SELECT Usuario.IdUsuario, Usuario.Nombre & ' ' & Usuario.Apellido AS Nombre, " +
                 "Perfil.Nombre AS Cargo, Usuario.DNI, " +
-                "IIF(DatosPersonales.Activo = False, 'Desactivado', 'Activo') AS Estado, " +
-                "IIF(DatosPersonales.Activo = False, False, True) AS Activo " +
-                "FROM ((Usuario LEFT JOIN DatosPersonales ON Usuario.IdUsuario = DatosPersonales.IdUsuario) " +
-                "LEFT JOIN [Relacion-Perfil-Usuario] ON Usuario.IdUsuario = [Relacion-Perfil-Usuario].IdUsuario) " +
+                "IIF(Usuario.Activo = False, 'Desactivado', 'Activo') AS Estado, " +
+                "IIF(Usuario.Activo = False, False, True) AS Activo " +
+                "FROM (Usuario LEFT JOIN [Relacion-Perfil-Usuario] ON Usuario.IdUsuario = [Relacion-Perfil-Usuario].IdUsuario) " +
                 "LEFT JOIN Perfil ON [Relacion-Perfil-Usuario].IdPerfil = Perfil.IdPerfil " +
                 "WHERE 1 = 1 ";
 
@@ -60,9 +59,9 @@ namespace prySampaolesiERP
             {
                 string estado = cmbEstado.SelectedItem.ToString();
                 if (estado == "Activos")
-                    consulta += "AND (DatosPersonales.Activo Is Null OR DatosPersonales.Activo <> False) ";
+                    consulta += "AND (Usuario.Activo Is Null OR Usuario.Activo <> False) ";
                 else if (estado == "Desactivados")
-                    consulta += "AND DatosPersonales.Activo = False ";
+                    consulta += "AND Usuario.Activo = False ";
             }
 
             string busqueda = txtBuscar.Text.Trim();
@@ -180,31 +179,12 @@ namespace prySampaolesiERP
 
         private bool GuardarEstadoUsuario(int idUsuario, bool activo)
         {
-            DataTable dt = conexion.EjecutarConsulta(
-                "SELECT COUNT(*) AS Cantidad FROM DatosPersonales WHERE IdUsuario = ?",
-                new OleDbParameter[]
-                {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario }
-                });
-
-            int cantidad = dt != null && dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["Cantidad"]) : 0;
-            if (cantidad > 0)
-            {
-                return conexion.EjecutarComando(
-                    "UPDATE DatosPersonales SET Activo = ? WHERE IdUsuario = ?",
-                    new OleDbParameter[]
-                    {
-                        new OleDbParameter("@activo", OleDbType.Boolean) { Value = activo },
-                        new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario }
-                    });
-            }
-
             return conexion.EjecutarComando(
-                "INSERT INTO DatosPersonales (IdUsuario, Activo) VALUES (?, ?)",
+                "UPDATE Usuario SET Activo = ? WHERE IdUsuario = ?",
                 new OleDbParameter[]
                 {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
-                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = activo }
+                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = activo },
+                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario }
                 });
         }
 

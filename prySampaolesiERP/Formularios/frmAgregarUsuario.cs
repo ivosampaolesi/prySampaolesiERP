@@ -134,14 +134,15 @@ namespace prySampaolesiERP
             }
 
             bool ok = conexion.EjecutarComando(
-                "INSERT INTO Usuario (Nombre, Apellido, DNI, Mail, Contrasenia) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO Usuario (Nombre, Apellido, DNI, Mail, Contrasenia, Activo) VALUES (?, ?, ?, ?, ?, ?)",
                 new OleDbParameter[]
                 {
                     new OleDbParameter("@nombre", OleDbType.VarWChar) { Value = txtNombre.Text.Trim() },
                     new OleDbParameter("@apellido", OleDbType.VarWChar) { Value = txtApellido.Text.Trim() },
                     new OleDbParameter("@dni", OleDbType.Integer) { Value = dni },
                     new OleDbParameter("@mail", OleDbType.VarWChar) { Value = txtMail.Text.Trim() },
-                    new OleDbParameter("@contrasenia", OleDbType.VarWChar) { Value = txtContrasenia.Text }
+                    new OleDbParameter("@contrasenia", OleDbType.VarWChar) { Value = txtContrasenia.Text },
+                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = true }
                 });
 
             int idUsuario = ok ? Convert.ToInt32(conexion.EjecutarEscalar("SELECT @@IDENTITY")) : 0;
@@ -164,25 +165,16 @@ namespace prySampaolesiERP
             string localidad = cmbLocalidad2.SelectedIndex >= 0 ? cmbLocalidad2.Text : "";
             string geo = txtGEO.Text.Trim();
 
-            if (!conexion.EjecutarComando(
-                "INSERT INTO DatosPersonales (IdUsuario, Provincia, Localidad, Geo, Activo) VALUES (?, ?, ?, ?, ?)",
-                new OleDbParameter[]
-                {
-                    new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
-                    new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
-                    new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
-                    new OleDbParameter("@geo", OleDbType.VarWChar) { Value = geo },
-                    new OleDbParameter("@activo", OleDbType.Boolean) { Value = true }
-                }))
-                return false;
-
             if (!string.IsNullOrWhiteSpace(txtDomicilio.Text) && !conexion.EjecutarComando(
-                "INSERT INTO Domicilios (IdUsuario, Domicilio, Detalle) VALUES (?, ?, ?)",
+                "INSERT INTO Domicilios (IdUsuario, Domicilio, Detalle, Localidad, Provincia, Geo) VALUES (?, ?, ?, ?, ?, ?)",
                 new OleDbParameter[]
                 {
                     new OleDbParameter("@idUsuario", OleDbType.Integer) { Value = idUsuario },
                     new OleDbParameter("@domicilio", OleDbType.VarWChar) { Value = txtDomicilio.Text.Trim() },
-                    new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = txtDetalleDomicilio.Text.Trim() }
+                    new OleDbParameter("@detalle", OleDbType.VarWChar) { Value = txtDetalleDomicilio.Text.Trim() },
+                    new OleDbParameter("@localidad", OleDbType.VarWChar) { Value = localidad },
+                    new OleDbParameter("@provincia", OleDbType.VarWChar) { Value = provincia },
+                    new OleDbParameter("@geo", OleDbType.VarWChar) { Value = geo }
                 }))
                 return false;
 
