@@ -215,15 +215,5 @@ namespace prySampaolesiERP
                 conexion.Desconectar();
             }
         }
-
-        private void btnVolver_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGuardar_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

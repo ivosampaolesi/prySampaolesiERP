@@ -1,4 +1,4 @@
-namespace prySampaolesiERP
+﻿namespace prySampaolesiERP
 {
     partial class frmAgregarUsuario
     {
@@ -91,7 +91,7 @@ namespace prySampaolesiERP
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(81, 17);
             this.lblContrasenia.TabIndex = 4;
-            this.lblContrasenia.Text = "Contrase�a:";
+            this.lblContrasenia.Text = "Contraseña:";
             // 
             // lblCargo
             // 
@@ -161,7 +161,6 @@ namespace prySampaolesiERP
             this.btnVolver.TabIndex = 0;
             this.btnVolver.Text = "Atras";
             this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
             // btnGuardar
             // 
@@ -176,7 +175,6 @@ namespace prySampaolesiERP
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
             // 
             // cmbLocalidad2
             // 
@@ -357,3 +355,4 @@ namespace prySampaolesiERP
         private System.Windows.Forms.TextBox txtGEO;
     }
 }
+

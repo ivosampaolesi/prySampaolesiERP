@@ -1,4 +1,5 @@
 using System;
+using System.Data.OleDb;
 using prySampaolesiClaseBD;
 
 namespace prySampaolesiERP
@@ -22,10 +23,13 @@ namespace prySampaolesiERP
 
         private static void Registrar(clsConexion conexion, string usuario, string cargo, string accion)
         {
-            usuario = (usuario ?? "").Replace("'", "''");
-            cargo = (cargo ?? "").Replace("'", "''");
-            accion = (accion ?? "").Replace("'", "''");
-            conexion.EjecutarComando($"INSERT INTO Auditoria ([Usuario], [Cargo], [FechaYHora], [Accion]) VALUES ('{usuario}', '{cargo}', Now(), '{accion}')");
+            OleDbParameter[] parametros = new OleDbParameter[]
+            {
+                new OleDbParameter("@usuario", OleDbType.VarWChar) { Value = usuario ?? "" },
+                new OleDbParameter("@cargo", OleDbType.VarWChar) { Value = cargo ?? "" },
+                new OleDbParameter("@accion", OleDbType.VarWChar) { Value = accion ?? "" }
+            };
+            conexion.EjecutarComando("INSERT INTO Auditoria ([Usuario], [Cargo], [FechaYHora], [Accion]) VALUES (?, ?, Now(), ?)", parametros);
         }
     }
 }
