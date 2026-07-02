@@ -22,7 +22,7 @@ namespace prySampaolesiERP
             this.lblUsuario = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblCargo = new System.Windows.Forms.Label();
-            this.txtCargo = new System.Windows.Forms.TextBox();
+            this.cmbCargo = new System.Windows.Forms.ComboBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvAuditoria = new System.Windows.Forms.DataGridView();
@@ -37,7 +37,7 @@ namespace prySampaolesiERP
             this.grpFiltros.Controls.Add(this.lblUsuario);
             this.grpFiltros.Controls.Add(this.txtUsuario);
             this.grpFiltros.Controls.Add(this.lblCargo);
-            this.grpFiltros.Controls.Add(this.txtCargo);
+            this.grpFiltros.Controls.Add(this.cmbCargo);
             this.grpFiltros.Controls.Add(this.btnFiltrar);
             this.grpFiltros.Controls.Add(this.btnLimpiar);
             this.grpFiltros.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
@@ -94,12 +94,15 @@ namespace prySampaolesiERP
             this.lblCargo.TabIndex = 4;
             this.lblCargo.Text = "Cargo:";
             // 
-            // txtCargo
             // 
-            this.txtCargo.Location = new System.Drawing.Point(475, 28);
-            this.txtCargo.Name = "txtCargo";
-            this.txtCargo.Size = new System.Drawing.Size(125, 25);
-            this.txtCargo.TabIndex = 5;
+            // cmbCargo
+            // 
+            this.cmbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCargo.FormattingEnabled = true;
+            this.cmbCargo.Location = new System.Drawing.Point(475, 28);
+            this.cmbCargo.Name = "cmbCargo";
+            this.cmbCargo.Size = new System.Drawing.Size(125, 25);
+            this.cmbCargo.TabIndex = 5;
             // 
             // btnFiltrar
             // 
@@ -179,7 +182,7 @@ namespace prySampaolesiERP
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblCargo;
-        private System.Windows.Forms.TextBox txtCargo;
+        private System.Windows.Forms.ComboBox cmbCargo;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridView dgvAuditoria;

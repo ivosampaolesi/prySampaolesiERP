@@ -21,7 +21,17 @@ namespace prySampaolesiERP
         {
             conexion = new clsConexion();
             if (conexion.Conectar())
+            {
+                CargarCargos();
                 CargarAuditoria();
+            }
+        }
+
+        private void CargarCargos()
+        {
+            cmbCargo.DataSource = conexion.EjecutarConsulta("SELECT Nombre FROM Perfil ORDER BY Nombre");
+            cmbCargo.DisplayMember = "Nombre";
+            cmbCargo.SelectedIndex = -1;
         }
 
         private void CargarAuditoria()
@@ -42,10 +52,10 @@ namespace prySampaolesiERP
                 parametros.Add(new OleDbParameter("@usuario", "%" + txtUsuario.Text.Trim() + "%"));
             }
 
-            if (!string.IsNullOrWhiteSpace(txtCargo.Text))
+            if (cmbCargo.SelectedIndex != -1)
             {
-                consulta += " AND Cargo LIKE ?";
-                parametros.Add(new OleDbParameter("@cargo", "%" + txtCargo.Text.Trim() + "%"));
+                consulta += " AND Cargo = ?";
+                parametros.Add(new OleDbParameter("@cargo", cmbCargo.Text));
             }
 
             consulta += " ORDER BY FechaYHora DESC";
@@ -62,7 +72,7 @@ namespace prySampaolesiERP
         {
             dtpFecha.Checked = false;
             txtUsuario.Clear();
-            txtCargo.Clear();
+            cmbCargo.SelectedIndex = -1;
             CargarAuditoria();
         }
 

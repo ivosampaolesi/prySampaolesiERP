@@ -480,7 +480,7 @@ namespace prySampaolesiERP
             }
             else if (cmbMedios.Text == "NumeroCelular")
             {
-                lblIngresarMedio.Text = "Numero:";
+                lblIngresarMedio.Text = "Número:";
             }
             else { lblIngresarMedio.Text = "Usuario:";}
         }
