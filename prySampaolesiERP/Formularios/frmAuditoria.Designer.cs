@@ -19,6 +19,8 @@ namespace prySampaolesiERP
             this.grpFiltros = new System.Windows.Forms.GroupBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.lblHasta = new System.Windows.Forms.Label();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.lblCargo = new System.Windows.Forms.Label();
@@ -34,6 +36,8 @@ namespace prySampaolesiERP
             // 
             this.grpFiltros.Controls.Add(this.lblFecha);
             this.grpFiltros.Controls.Add(this.dtpFecha);
+            this.grpFiltros.Controls.Add(this.lblHasta);
+            this.grpFiltros.Controls.Add(this.dtpHasta);
             this.grpFiltros.Controls.Add(this.lblUsuario);
             this.grpFiltros.Controls.Add(this.txtUsuario);
             this.grpFiltros.Controls.Add(this.lblCargo);
@@ -56,16 +60,36 @@ namespace prySampaolesiERP
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(51, 19);
             this.lblFecha.TabIndex = 0;
-            this.lblFecha.Text = "Fecha:";
+            this.lblFecha.Text = "Desde:";
             // 
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFecha.Location = new System.Drawing.Point(65, 28);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.ShowCheckBox = true;
+            this.dtpFecha.ShowCheckBox = false;
             this.dtpFecha.Size = new System.Drawing.Size(125, 25);
             this.dtpFecha.TabIndex = 1;
+            // 
+            // lblHasta
+            // 
+            this.lblHasta.AutoSize = true;
+            this.lblHasta.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.lblHasta.Location = new System.Drawing.Point(14, 58);
+            this.lblHasta.Name = "lblHasta";
+            this.lblHasta.Size = new System.Drawing.Size(51, 19);
+            this.lblHasta.TabIndex = 8;
+            this.lblHasta.Text = "Hasta:";
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.Checked = false;
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(65, 54);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.ShowCheckBox = true;
+            this.dtpHasta.Size = new System.Drawing.Size(125, 25);
+            this.dtpHasta.TabIndex = 9;
             // 
             // lblUsuario
             // 
@@ -93,7 +117,6 @@ namespace prySampaolesiERP
             this.lblCargo.Size = new System.Drawing.Size(54, 19);
             this.lblCargo.TabIndex = 4;
             this.lblCargo.Text = "Cargo:";
-            // 
             // 
             // cmbCargo
             // 
@@ -179,6 +202,8 @@ namespace prySampaolesiERP
         private System.Windows.Forms.GroupBox grpFiltros;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.Label lblHasta;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label lblCargo;

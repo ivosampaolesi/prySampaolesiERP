@@ -156,7 +156,7 @@ namespace prySampaolesiERP
             this.btnAuditoria.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnAuditoria.Size = new System.Drawing.Size(174, 37);
             this.btnAuditoria.TabIndex = 4;
-            this.btnAuditoria.Text = "📋  Auditoria";
+            this.btnAuditoria.Text = "📋  Auditoría";
             this.btnAuditoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAuditoria.UseVisualStyleBackColor = true;
             this.btnAuditoria.Visible = false;

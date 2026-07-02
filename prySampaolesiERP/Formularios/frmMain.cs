@@ -145,7 +145,7 @@ namespace prySampaolesiERP
         private void btnAuditoria_Click(object sender, EventArgs e)
         {
             clsAuditoria.RegistrarAccion(conexion, Program.UsuarioMail, Program.UsuarioPerfil, "Pestana Auditoria");
-            AbrirFormularioHijo(new frmAuditoria(), "Auditoria");
+            AbrirFormularioHijo(new frmAuditoria(), "Auditoría");
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)

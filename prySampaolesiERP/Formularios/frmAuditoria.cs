@@ -15,6 +15,8 @@ namespace prySampaolesiERP
             InitializeComponent();
             Load += frmAuditoria_Load;
             FormClosing += frmAuditoria_FormClosing;
+            dtpFecha.ValueChanged += (s, e) => { if (dtpFecha.Checked && dtpHasta.Checked && dtpHasta.Value.Date < dtpFecha.Value.Date) dtpHasta.Value = dtpFecha.Value; };
+            dtpHasta.ValueChanged += (s, e) => { if (dtpFecha.Checked && dtpHasta.Checked && dtpHasta.Value.Date < dtpFecha.Value.Date) dtpFecha.Value = dtpHasta.Value; };
         }
 
         private void frmAuditoria_Load(object sender, EventArgs e)
@@ -41,9 +43,15 @@ namespace prySampaolesiERP
 
             if (dtpFecha.Checked)
             {
-                consulta += " AND FechaYHora >= ? AND FechaYHora < ?";
+                consulta += " AND FechaYHora >= ?";
                 parametros.Add(new OleDbParameter("@desde", OleDbType.Date) { Value = dtpFecha.Value.Date });
-                parametros.Add(new OleDbParameter("@hasta", OleDbType.Date) { Value = dtpFecha.Value.Date.AddDays(1) });
+            }
+
+            if (dtpHasta.Checked || dtpFecha.Checked)
+            {
+                consulta += " AND FechaYHora < ?";
+                DateTime hasta = dtpHasta.Checked ? dtpHasta.Value.Date.AddDays(1) : dtpFecha.Value.Date.AddDays(1);
+                parametros.Add(new OleDbParameter("@hasta", OleDbType.Date) { Value = hasta });
             }
 
             if (!string.IsNullOrWhiteSpace(txtUsuario.Text))
@@ -70,7 +78,8 @@ namespace prySampaolesiERP
 
         private void LimpiarFiltros()
         {
-            dtpFecha.Checked = false;
+            dtpFecha.Value = DateTime.Today;
+            dtpHasta.Checked = false;
             txtUsuario.Clear();
             cmbCargo.SelectedIndex = -1;
             CargarAuditoria();
